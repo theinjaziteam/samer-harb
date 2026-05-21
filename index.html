@@ -1,0 +1,1189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Samer Harb — Strategic Food Industry Consultant</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet"/>
+
+  <!-- GSAP + ScrollTrigger + Lenis smooth scroll -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/TextPlugin.min.js"></script>
+  <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+
+  <style>
+    /* ── TOKENS ── */
+    :root {
+      --blue:      #1c69d4;
+      --blue-dark: #0653b6;
+      --dark:      #1a2129;
+      --dark-2:    #262e38;
+      --ink:       #262626;
+      --body:      #3c3c3c;
+      --muted:     #6b6b6b;
+      --soft:      #9a9a9a;
+      --line:      #e6e6e6;
+      --white:     #ffffff;
+      --off:       #f7f7f7;
+      --card:      #fafafa;
+      --m-red:     #e22718;
+      --font: 'Inter', system-ui, sans-serif;
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    *,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: auto; }
+
+    body {
+      font-family: var(--font);
+      color: var(--body);
+      background: var(--white);
+      overflow-x: hidden;
+      cursor: none;
+    }
+
+    /* ── CUSTOM CURSOR ── */
+    .cursor {
+      position: fixed;
+      width: 10px; height: 10px;
+      background: var(--blue);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%,-50%);
+      transition: width .25s var(--ease-out), height .25s var(--ease-out), background .2s;
+    }
+    .cursor-ring {
+      position: fixed;
+      width: 36px; height: 36px;
+      border: 1.5px solid var(--blue);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9998;
+      transform: translate(-50%,-50%);
+      transition: width .4s var(--ease-out), height .4s var(--ease-out), opacity .3s;
+      opacity: 0.5;
+    }
+    body:has(a:hover) .cursor  { width: 14px; height: 14px; background: var(--blue-dark); }
+    body:has(a:hover) .cursor-ring { width: 52px; height: 52px; opacity: 0.25; }
+    body:has(.btn-primary:hover) .cursor { background: var(--white); }
+
+    a, button { cursor: none; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 100;
+      height: 64px;
+      display: flex; align-items: center;
+      padding: 0 48px;
+      background: transparent;
+      transition: background .4s, box-shadow .4s;
+    }
+    nav.scrolled {
+      background: rgba(255,255,255,0.96);
+      box-shadow: 0 1px 0 var(--line);
+      backdrop-filter: blur(12px);
+    }
+    .nav-inner {
+      width: 100%; display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 12px;
+    }
+    .nav-logo img {
+      width: 36px; height: 36px; border-radius: 50%; object-fit: cover;
+      border: 2px solid rgba(255,255,255,0.3);
+      transition: border-color .3s;
+    }
+    nav.scrolled .nav-logo img { border-color: var(--line); }
+    .nav-name {
+      font-size: 15px; font-weight: 700; letter-spacing: .2px;
+      color: var(--white);
+      transition: color .3s;
+    }
+    nav.scrolled .nav-name { color: var(--ink); }
+    .nav-links {
+      display: flex; gap: 36px; list-style: none;
+    }
+    .nav-links a {
+      font-size: 13px; font-weight: 400; letter-spacing: .4px;
+      color: rgba(255,255,255,0.8);
+      text-decoration: none;
+      transition: color .2s;
+      position: relative;
+    }
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: -2px; left: 0; right: 100%;
+      height: 1px; background: var(--blue);
+      transition: right .3s var(--ease-out);
+    }
+    .nav-links a:hover::after { right: 0; }
+    nav.scrolled .nav-links a { color: var(--muted); }
+    nav.scrolled .nav-links a:hover { color: var(--ink); }
+    .nav-cta {
+      font-size: 13px; font-weight: 700; letter-spacing: .8px;
+      text-transform: uppercase;
+      color: var(--white);
+      background: var(--blue);
+      border: none;
+      padding: 11px 24px;
+      text-decoration: none;
+      display: inline-block;
+      transition: background .2s, transform .2s;
+    }
+    .nav-cta:hover { background: var(--blue-dark); transform: translateY(-1px); }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      height: 100vh; min-height: 680px;
+      overflow: hidden;
+      background: #000;
+      display: flex; align-items: flex-end;
+      padding-bottom: 110px;
+    }
+    .hero-photo {
+      position: absolute; inset: 0;
+      z-index: 1;
+    }
+    .hero-photo img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center 45%;
+      transform-origin: center;
+      filter: brightness(0.22) saturate(0.7);
+    }
+    .hero-vignette {
+      position: absolute; inset: 0; z-index: 2;
+      background:
+        linear-gradient(to right,  #000 0%, rgba(0,0,0,0.85) 12%, rgba(0,0,0,0.4) 28%, transparent 42%, transparent 58%, rgba(0,0,0,0.4) 72%, rgba(0,0,0,0.85) 88%, #000 100%),
+        linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, transparent 25%, rgba(0,0,0,0.4) 65%, rgba(0,0,0,0.85) 85%, #000 100%);
+    }
+    .hero-content {
+      position: relative; z-index: 3;
+      padding: 0 48px;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: flex-end;
+      gap: 40px;
+    }
+    .hero-left {}
+    .hero-tag {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 24px;
+      opacity: 0;
+    }
+    .hero-tag::before {
+      content: ''; display: block; width: 28px; height: 1.5px; background: var(--blue);
+    }
+    .hero-h1 {
+      font-size: clamp(52px, 6vw, 88px);
+      font-weight: 700; line-height: 1.0; letter-spacing: -1px;
+      color: var(--white);
+      overflow: hidden;
+    }
+    .hero-h1 .line { display: block; overflow: hidden; padding-bottom: 0.18em; margin-bottom: -0.18em; }
+    .hero-h1 .word { display: inline-block; transform: translateY(110%); }
+    .hero-h1 em { color: var(--blue); font-style: normal; }
+    .hero-right {
+      display: flex; flex-direction: column;
+      justify-content: flex-end; gap: 20px;
+      opacity: 0;
+    }
+    .hero-bio {
+      font-size: 16px; font-weight: 300; line-height: 1.65;
+      color: rgba(255,255,255,0.75);
+      max-width: 380px;
+    }
+    .hero-stats {
+      display: flex; gap: 32px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255,255,255,0.12);
+    }
+    .stat-val {
+      font-size: 36px; font-weight: 700; line-height: 1;
+      color: var(--white);
+    }
+    .stat-val span { color: var(--blue); }
+    .stat-lbl {
+      font-size: 11px; font-weight: 400; letter-spacing: 1px;
+      text-transform: uppercase; color: rgba(255,255,255,0.45);
+      margin-top: 4px;
+    }
+    .hero-scroll { display: none; }
+    .scroll-line  { display: none; }
+
+    /* ── M STRIPE ── */
+    .m-stripe { height: 4px; background: linear-gradient(90deg, #0066b1 0%, #1c69d4 50%, #e22718 100%); }
+
+    /* ── MARQUEE TICKER ── */
+    .ticker {
+      background: var(--white);
+      border-bottom: 1px solid var(--line);
+      padding: 14px 0;
+      overflow: hidden;
+    }
+    .ticker-track {
+      display: flex; gap: 64px;
+      white-space: nowrap;
+      animation: tickerScroll 28s linear infinite;
+    }
+    .ticker-item {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 12px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+      color: var(--muted);
+      flex-shrink: 0;
+    }
+    .ticker-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--blue); flex-shrink: 0; }
+    @keyframes tickerScroll {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* ── ABOUT BENTO ── */
+    .about {
+      padding: 100px 48px;
+      background: var(--white);
+    }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 520px 1fr;
+      grid-template-rows: auto auto;
+      gap: 24px;
+      max-width: 1340px;
+      margin: 0 auto;
+    }
+    .about-photo-cell {
+      grid-row: 1 / 3;
+      position: relative;
+      overflow: hidden;
+      background: var(--card);
+    }
+    .about-photo-cell img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: top;
+      display: block;
+      min-height: 580px;
+    }
+    .about-photo-overlay {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 32px;
+      background: linear-gradient(to top, rgba(26,33,41,0.9), transparent);
+    }
+    .about-photo-name {
+      font-size: 24px; font-weight: 700; color: var(--white);
+    }
+    .about-photo-title {
+      font-size: 13px; font-weight: 300; letter-spacing: .3px; color: rgba(255,255,255,0.6);
+      margin-top: 4px;
+    }
+    .about-bio-cell {
+      background: var(--dark);
+      padding: 48px;
+      display: flex; flex-direction: column; justify-content: space-between;
+    }
+    .section-eyebrow {
+      font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+      color: var(--blue); margin-bottom: 20px;
+    }
+    .about-bio-cell h2 {
+      font-size: clamp(28px, 3vw, 42px); font-weight: 700; line-height: 1.1;
+      color: var(--white); margin-bottom: 20px;
+    }
+    .about-bio-cell p {
+      font-size: 16px; font-weight: 300; line-height: 1.7;
+      color: rgba(255,255,255,0.65);
+    }
+    .about-cred-cell {
+      background: var(--off);
+      padding: 40px 48px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      align-items: center;
+    }
+    .cred-item {}
+    .cred-val {
+      font-size: 32px; font-weight: 700; color: var(--ink);
+      line-height: 1;
+    }
+    .cred-val em { color: var(--blue); font-style: normal; font-size: 20px; }
+    .cred-lbl {
+      font-size: 12px; font-weight: 400; letter-spacing: .5px;
+      color: var(--muted); margin-top: 6px;
+    }
+
+    /* ── CERT LOGOS ── */
+    .certs-row {
+      border-top: 1px solid var(--line);
+      padding: 16px 0 0;
+      display: flex; align-items: center; gap: 24px;
+      flex-wrap: wrap;
+    }
+    .certs-label {
+      font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+      color: var(--soft); flex-shrink: 0;
+    }
+    .cert-logo-img {
+      height: 36px; width: auto; object-fit: contain;
+      filter: grayscale(1) opacity(0.5);
+      transition: filter .3s;
+    }
+    .cert-logo-img:hover { filter: grayscale(0) opacity(1); }
+
+    /* ── SERVICES ── */
+    .services {
+      padding: 100px 48px;
+      background: var(--white);
+      border-top: 1px solid var(--line);
+    }
+    .services-header {
+      max-width: 1340px; margin: 0 auto 60px;
+      display: flex; align-items: flex-end; justify-content: space-between;
+    }
+    .services-header h2 {
+      font-size: clamp(32px, 4vw, 56px); font-weight: 700; line-height: 1.05;
+      color: var(--ink);
+    }
+    .services-header h2 em { color: var(--blue); font-style: normal; }
+    .services-list {
+      max-width: 1340px; margin: 0 auto;
+    }
+    .svc-item {
+      display: grid;
+      grid-template-columns: 80px 1fr 200px 120px;
+      align-items: center;
+      gap: 32px;
+      padding: 28px 0;
+      border-top: 1px solid var(--line);
+      transition: background .2s;
+      position: relative;
+    }
+    .svc-item:last-child { border-bottom: 1px solid var(--line); }
+    .svc-num {
+      font-size: 13px; font-weight: 700; letter-spacing: 1.5px; color: var(--soft);
+    }
+    .svc-title {
+      font-size: 22px; font-weight: 700; color: var(--ink);
+      transition: color .2s;
+    }
+    .svc-item:hover .svc-title { color: var(--blue); }
+    .svc-desc {
+      font-size: 14px; font-weight: 300; line-height: 1.6; color: var(--muted);
+    }
+    .svc-arrow {
+      font-size: 22px; color: var(--blue);
+      text-align: right;
+      opacity: 0;
+      transform: translateX(-8px);
+      transition: opacity .2s, transform .3s var(--ease-out);
+    }
+    .svc-item:hover .svc-arrow { opacity: 1; transform: translateX(0); }
+
+    /* ── PORTFOLIO ── */
+    .portfolio {
+      padding: 100px 48px;
+      background: var(--dark);
+    }
+    .portfolio-header {
+      max-width: 1340px; margin: 0 auto 60px;
+      display: flex; align-items: flex-end; justify-content: space-between;
+    }
+    .portfolio-header h2 {
+      font-size: clamp(32px, 4vw, 56px); font-weight: 700; color: var(--white);
+    }
+    .link-light {
+      font-size: 12px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+      color: rgba(255,255,255,0.4); text-decoration: none;
+      transition: color .2s;
+      display: inline-flex; align-items: center; gap: 8px;
+    }
+    .link-light:hover { color: var(--white); }
+    .link-light::after { content: '→'; transition: transform .3s; }
+    .link-light:hover::after { transform: translateX(4px); }
+
+    .portfolio-bento {
+      max-width: 1340px; margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-rows: 360px 260px;
+      gap: 3px;
+    }
+    .p-card {
+      position: relative; overflow: hidden;
+      background: var(--dark-2);
+    }
+    .p-card:first-child { grid-column: 1 / 3; }
+    .p-card img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform .7s var(--ease-out);
+      display: block;
+    }
+    .p-card:hover img { transform: scale(1.04); }
+    .p-card-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(26,33,41,0.92) 0%, rgba(26,33,41,0.0) 55%);
+      display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 28px;
+      opacity: 1;
+    }
+    .p-tag {
+      font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+      color: var(--blue); margin-bottom: 8px;
+    }
+    .p-title {
+      font-size: 20px; font-weight: 700; color: var(--white);
+    }
+    .p-desc {
+      font-size: 13px; font-weight: 300; color: rgba(255,255,255,0.6);
+      margin-top: 6px; line-height: 1.55;
+    }
+
+    /* ── MEDIA MARQUEE ── */
+    .media-section {
+      background: var(--white);
+      padding: 80px 48px;
+      border-top: 1px solid var(--line);
+    }
+    .media-inner { max-width: 1340px; margin: 0 auto; }
+    .media-inner h2 {
+      font-size: clamp(24px, 3vw, 40px); font-weight: 700; color: var(--ink);
+      margin-bottom: 48px;
+    }
+    .media-logos {
+      display: grid; grid-template-columns: repeat(5, 1fr);
+      gap: 0; border: 1px solid var(--line);
+    }
+    .media-logo-item {
+      padding: 32px 24px;
+      border-right: 1px solid var(--line);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 12px; text-align: center;
+      transition: background .2s;
+    }
+    .media-logo-item:last-child { border-right: none; }
+    .media-logo-item:hover { background: var(--off); }
+    .media-icon { width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; }
+    .media-icon svg { width: 28px; height: 28px; stroke: var(--muted); fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; transition: stroke .2s; }
+    .media-logo-item:hover .media-icon svg { stroke: var(--blue); }
+    .media-name { font-size: 13px; font-weight: 700; color: var(--ink); }
+    .media-type { font-size: 11px; font-weight: 300; color: var(--soft); letter-spacing: .5px; }
+
+    .memberships {
+      margin-top: 60px;
+    }
+    .memberships h3 {
+      font-size: 13px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+      color: var(--soft); margin-bottom: 24px;
+    }
+    .membership-logos {
+      display: flex; gap: 36px; align-items: center; flex-wrap: wrap;
+    }
+    .m-logo-img {
+      height: 52px; width: auto; object-fit: contain;
+      filter: grayscale(1) opacity(0.45);
+      transition: filter .35s var(--ease-out), transform .35s var(--ease-out);
+    }
+    .m-logo-img:hover {
+      filter: grayscale(0) opacity(1);
+      transform: scale(1.06);
+    }
+
+    /* ── CTA ── */
+    .cta-section {
+      background: var(--dark);
+      padding: 120px 48px;
+      position: relative; overflow: hidden;
+    }
+    .cta-bg-text {
+      position: absolute; bottom: -20px; right: 40px;
+      font-size: clamp(120px, 16vw, 200px);
+      font-weight: 700; line-height: 1;
+      color: rgba(255,255,255,0.025);
+      pointer-events: none;
+      white-space: nowrap;
+    }
+    .cta-inner {
+      max-width: 1340px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+    }
+    .cta-inner h2 {
+      font-size: clamp(36px, 5vw, 72px); font-weight: 700; line-height: 1.0;
+      color: var(--white);
+    }
+    .cta-inner h2 em { color: var(--blue); font-style: normal; }
+    .cta-right-content { display: flex; flex-direction: column; gap: 32px; }
+    .cta-inner p {
+      font-size: 17px; font-weight: 300; line-height: 1.7;
+      color: rgba(255,255,255,0.6);
+    }
+    .cta-btns { display: flex; gap: 16px; }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: 13px; font-weight: 700; letter-spacing: .8px; text-transform: uppercase;
+      color: var(--white); background: var(--blue);
+      padding: 16px 32px;
+      text-decoration: none;
+      border: none;
+      transition: background .2s, transform .25s var(--ease-out);
+      position: relative; overflow: hidden;
+    }
+    .btn-primary::after {
+      content: ''; position: absolute; inset: 0;
+      background: rgba(255,255,255,0.08);
+      transform: translateX(-100%); skewX(-15deg);
+      transition: transform .4s var(--ease-out);
+    }
+    .btn-primary:hover::after { transform: translateX(100%) skewX(-15deg); }
+    .btn-primary:hover { background: var(--blue-dark); transform: translateY(-2px); }
+    .btn-ghost {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: 13px; font-weight: 700; letter-spacing: .8px; text-transform: uppercase;
+      color: rgba(255,255,255,0.7);
+      border: 1px solid rgba(255,255,255,0.2);
+      padding: 16px 32px;
+      text-decoration: none;
+      transition: border-color .2s, color .2s, transform .25s var(--ease-out);
+    }
+    .btn-ghost:hover {
+      border-color: rgba(255,255,255,0.6);
+      color: var(--white);
+      transform: translateY(-2px);
+    }
+    .cta-location-list { display: flex; flex-direction: column; gap: 8px; }
+    .loc-item {
+      display: flex; align-items: center; gap: 12px;
+      font-size: 14px; font-weight: 300; color: rgba(255,255,255,0.5);
+    }
+    .loc-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--blue); flex-shrink: 0; }
+    .loc-country { font-weight: 700; color: rgba(255,255,255,0.8); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--off);
+      padding: 64px 48px 32px;
+      border-top: 1px solid var(--line);
+    }
+    .footer-inner {
+      max-width: 1340px; margin: 0 auto;
+    }
+    .footer-top {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 48px; padding-bottom: 48px;
+      border-bottom: 1px solid var(--line);
+    }
+    .footer-brand-name { font-size: 17px; font-weight: 700; color: var(--ink); margin-bottom: 6px; }
+    .footer-brand-desc { font-size: 14px; font-weight: 300; color: var(--muted); line-height: 1.65; max-width: 300px; margin-bottom: 24px; }
+    .footer-social { display: flex; gap: 12px; }
+    .footer-social a {
+      width: 36px; height: 36px; border: 1px solid var(--line);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px; color: var(--muted); text-decoration: none;
+      transition: border-color .2s, color .2s, background .2s;
+    }
+    .footer-social a:hover { border-color: var(--blue); color: var(--blue); background: rgba(28,105,212,0.05); }
+    .footer-col-title { font-size: 12px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--ink); margin-bottom: 20px; }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-col a { font-size: 14px; font-weight: 300; color: var(--muted); text-decoration: none; transition: color .2s; }
+    .footer-col a:hover { color: var(--blue); }
+    .footer-bottom {
+      display: flex; align-items: center; justify-content: space-between;
+      padding-top: 24px;
+    }
+    .footer-copy { font-size: 12px; color: var(--soft); }
+    .footer-bottom-links { display: flex; gap: 24px; }
+    .footer-bottom-links a { font-size: 12px; color: var(--soft); text-decoration: none; transition: color .2s; }
+    .footer-bottom-links a:hover { color: var(--blue); }
+
+    /* ── REVEAL UTILITY ── */
+    .reveal { opacity: 0; transform: translateY(32px); }
+    .reveal-left { opacity: 0; transform: translateX(-40px); }
+    .reveal-right { opacity: 0; transform: translateX(40px); }
+    .reveal-scale { opacity: 0; transform: scale(0.94); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1100px) {
+      .about-grid { grid-template-columns: 1fr; }
+      .about-photo-cell { grid-row: auto; }
+      .about-photo-cell img { min-height: 420px; max-height: 480px; width: 100%; }
+      .portfolio-bento { grid-template-rows: 280px 220px; }
+    }
+    @media (max-width: 900px) {
+      nav { padding: 0 24px; }
+      .nav-links { display: none; }
+      .hero-content { grid-template-columns: 1fr; gap: 24px; padding: 0 24px; }
+      .hero-right { display: none; }
+      .about, .services, .portfolio, .media-section, .cta-section { padding-left: 24px; padding-right: 24px; }
+      footer { padding-left: 24px; padding-right: 24px; }
+      .about-cred-cell { grid-template-columns: 1fr 1fr; }
+      .portfolio-bento { grid-template-columns: 1fr; grid-template-rows: auto; }
+      .p-card:first-child { grid-column: 1; }
+      .p-card { height: 280px; }
+      .services-header, .portfolio-header, .media-inner h2 { flex-direction: column; align-items: flex-start; gap: 16px; }
+      .svc-item { grid-template-columns: 48px 1fr; gap: 16px; }
+      .svc-desc, .svc-arrow { display: none; }
+      .media-logos { grid-template-columns: repeat(3, 1fr); }
+      .media-logo-item:nth-child(3) { border-right: none; }
+      .media-logo-item:nth-child(4), .media-logo-item:nth-child(5) { border-top: 1px solid var(--line); }
+      .cta-inner { grid-template-columns: 1fr; gap: 40px; }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 600px) {
+      .hero-h1 { font-size: 44px; }
+      .hero-stats { gap: 20px; }
+      .stat-val { font-size: 28px; }
+      .footer-top { grid-template-columns: 1fr; }
+      .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Custom cursor -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <!-- ─── NAV ─── -->
+  <nav id="nav">
+    <div class="nav-inner">
+      <div class="nav-logo">
+        <img src="https://img1.wsimg.com/isteam/ip/444b8d38-19da-4b89-bf4c-bb2ec2c3c6d1/logo/a260a6c7-3ef4-40ab-bab9-99ee7f8ea3c9.jpeg" alt="Samer Harb"/>
+        <span class="nav-name">Samer Harb</span>
+      </div>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#portfolio">Portfolio</a></li>
+        <li><a href="#recognition">Recognition</a></li>
+      </ul>
+      <a href="#contact" class="nav-cta">Book a Consultation</a>
+    </div>
+  </nav>
+
+  <!-- ─── HERO ─── -->
+  <section class="hero" id="hero">
+    <div class="hero-photo">
+      <img id="heroImg" src="https://img1.wsimg.com/isteam/ip/444b8d38-19da-4b89-bf4c-bb2ec2c3c6d1/Samer.think.jpeg" alt="Samer Harb thinking"/>
+    </div>
+    <div class="hero-vignette"></div>
+    <div class="hero-content">
+      <div class="hero-left">
+        <div class="hero-tag">Strategic Food Consultant</div>
+        <h1 class="hero-h1">
+          <span class="line"><span class="word">Shaping</span></span>
+          <span class="line"><span class="word">Food</span> <span class="word"><em>Science</em></span></span>
+          <span class="line"><span class="word">Across</span> <span class="word">MENA.</span></span>
+        </h1>
+      </div>
+      <div class="hero-right">
+        <p class="hero-bio">Over 25 years of certified expertise across Lebanon, Saudi Arabia, Egypt, Kuwait, and Bahrain — from ISO compliance to product innovation.</p>
+        <div class="hero-stats">
+          <div>
+            <div class="stat-val" data-count="25"><span>0</span>+</div>
+            <div class="stat-lbl">Years Experience</div>
+          </div>
+          <div>
+            <div class="stat-val" data-count="5"><span>0</span></div>
+            <div class="stat-lbl">MENA Countries</div>
+          </div>
+          <div>
+            <div class="stat-val" data-count="8"><span>0</span></div>
+            <div class="stat-lbl">Service Areas</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── M STRIPE ─── -->
+  <div class="m-stripe"></div>
+
+  <!-- ─── TICKER ─── -->
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker-track">
+      <!-- items duplicated for seamless loop -->
+      <span class="ticker-item"><span class="ticker-dot"></span>First Lebanese Certified Food Scientist</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>ISO 22000:2018 Lead Auditor · IRCA-UK</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>MS Food Technology · AUB · 1997</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>IFT Member · CIFST Member</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>Featured: MTV Lebanon · Future TV</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>25+ Years MENA Experience</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>Yaza Labneh · Rifai Coffee Capsules</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>First Lebanese Certified Food Scientist</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>ISO 22000:2018 Lead Auditor · IRCA-UK</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>MS Food Technology · AUB · 1997</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>IFT Member · CIFST Member</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>Featured: MTV Lebanon · Future TV</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>25+ Years MENA Experience</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>Yaza Labneh · Rifai Coffee Capsules</span>
+    </div>
+  </div>
+
+  <!-- ─── ABOUT BENTO ─── -->
+  <section class="about" id="about">
+    <div class="about-grid">
+
+      <div class="about-photo-cell reveal-scale">
+        <img src="https://img1.wsimg.com/isteam/ip/444b8d38-19da-4b89-bf4c-bb2ec2c3c6d1/Samer.think.jpeg" alt="Samer Harb"/>
+        <div class="about-photo-overlay">
+          <div class="about-photo-name">Samer Harb</div>
+          <div class="about-photo-title">Strategic Food Industry Consultant · Certified Food Scientist</div>
+        </div>
+      </div>
+
+      <div class="about-bio-cell reveal-right">
+        <div>
+          <div class="section-eyebrow">About</div>
+          <h2>"Helping you design<br>success."</h2>
+          <p>With a Master's in Food Technology and a Bachelor's in Nutrition & Dietetics — both from the American University of Beirut — and as the <strong style="color:rgba(255,255,255,0.9);font-weight:700;">first Lebanese Certified Food Scientist</strong>, I've spent over 25 years building food businesses across the MENA region. From ISO compliance to full ERP transformation, from shelf life to supply chain — I work end-to-end.</p>
+        </div>
+        <div class="certs-row">
+          <span class="certs-label">Certifications</span>
+          <img class="cert-logo-img" src="https://img1.wsimg.com/isteam/ip/444b8d38-19da-4b89-bf4c-bb2ec2c3c6d1/CFS.jpeg" alt="Certified Food Scientist"/>
+          <img class="cert-logo-img" src="https://img1.wsimg.com/isteam/ip/444b8d38-19da-4b89-bf4c-bb2ec2c3c6d1/ift%20logo.gif" alt="IFT"/>
+          <img class="cert-logo-img" src="https://img1.wsimg.com/isteam/ip/444b8d38-19da-4b89-bf4c-bb2ec2c3c6d1/CIFST.jpg" alt="CIFST"/>
+        </div>
+      </div>
+
+      <div class="about-cred-cell reveal">
+        <div class="cred-item">
+          <div class="cred-val counter-el" data-target="25">0<em>+</em></div>
+          <div class="cred-lbl">Years of Industry Experience</div>
+        </div>
+        <div class="cred-item">
+          <div class="cred-val counter-el" data-target="5">0</div>
+          <div class="cred-lbl">MENA Countries Served</div>
+        </div>
+        <div class="cred-item">
+          <div class="cred-val counter-el" data-target="8">0</div>
+          <div class="cred-lbl">Consulting Verticals</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ─── SERVICES ─── -->
+  <section class="services" id="services">
+    <div class="services-header">
+      <div>
+        <div class="section-eyebrow">What I Do</div>
+        <h2>Eight Pillars of<br><em>Food Excellence</em></h2>
+      </div>
+      <a href="#contact" class="link-dark" style="font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:color .2s;" onmouseover="this.style.color='var(--blue)'" onmouseout="this.style.color='var(--muted)'">All Services →</a>
+    </div>
+    <div class="services-list">
+
+      <div class="svc-item reveal">
+        <span class="svc-num">01</span>
+        <span class="svc-title">Food Projects Consultation</span>
+        <span class="svc-desc">ISO 22000:2018 compliance, facility design, workflow engineering, machinery planning.</span>
+        <span class="svc-arrow">→</span>
+      </div>
+      <div class="svc-item reveal">
+        <span class="svc-num">02</span>
+        <span class="svc-title">Shelf Life &amp; Quality Control</span>
+        <span class="svc-desc">Strategic extension of product shelf life and resolution of quality issues.</span>
+        <span class="svc-arrow">→</span>
+      </div>
+      <div class="svc-item reveal">
+        <span class="svc-num">03</span>
+        <span class="svc-title">Nutritional Facts &amp; Labeling</span>
+        <span class="svc-desc">Accurate calculations and full regulatory compliance documentation for MENA &amp; international.</span>
+        <span class="svc-arrow">→</span>
+      </div>
+      <div class="svc-item reveal">
+        <span class="svc-num">04</span>
+        <span class="svc-title">Management Consulting</span>
+        <span class="svc-desc">Organizational structure redesign and leadership optimization for food industry teams.</span>
+        <span class="svc-arrow">→</span>
+      </div>
+      <div class="svc-item reveal">
+        <span class="svc-num">05</span>
+        <span class="svc-title">Supply Chain Consulting</span>
+        <span class="svc-desc">End-to-end process improvement and logistics streamlining across the MENA region.</span>
+        <span class="svc-arrow">→</span>
+      </div>
+      <div class="svc-item reveal">
+        <span class="svc-num">06</span>
+        <span class="svc-title">Digital Transformation / ERP</span>
+        <span class="svc-desc">Technology implementation guidance for food businesses adopting modern digital workflows.</span>
+        <span class="svc-arrow">→</span>
+      </div>
+      <div class="svc-item reveal">
+        <span class="svc-num">07</span>
+        <span class="svc-title">Risk Management</span>
+        <span class="svc-desc">Systematic identification and mitigation of business risks across food production and compliance.</span>
+        <span class="svc-arrow">→</span>
+      </div>
+      <div class="svc-item reveal">
+        <span class="svc-num">08</span>
+        <span class="svc-title">Product Development</span>
+        <span class="svc-desc">Processing line design and new product development from concept to certified launch.</span>
+        <span class="svc-arrow">→</span>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ─── M STRIPE ─── -->
+  <div class="m-stripe"></div>
+
+  <!-- ─── PORTFOLIO ─── -->
+  <section class="portfolio" id="portfolio">
+    <div class="portfolio-header">
+      <div>
+        <div class="section-eyebrow" style="color:var(--blue)">Selected Work</div>
+        <h2>Portfolio</h2>
+      </div>
+      <a href="#contact" class="link-light">Discuss a project</a>
+    </div>
+    <div class="portfolio-bento">
+
+      <div class="p-card reveal-scale">
+        <img src="https://img1.wsimg.com/isteam/ip/444b8d38-19da-4b89-bf4c-bb2ec2c3c6d1/35ad545c-b089-4a22-83df-e5a17b26a364.jpg" alt="Yaza Labneh"/>
+        <div class="p-card-overlay">
+          <div class="p-tag">Product Development · USA</div>
+          <div class="p-title">Yaza Labneh</div>
+          <div class="p-desc">Premium Lebanese dairy brand formulated and labeled for the American market.</div>
+        </div>
+      </div>
+
+      <div class="p-card reveal-scale">
+        <img src="https://img1.wsimg.com/isteam/ip/444b8d38-19da-4b89-bf4c-bb2ec2c3c6d1/0b03709f-b9ef-46ba-a58b-241f3bc99e6d.jpg" alt="Rifai Coffee Capsules"/>
+        <div class="p-card-overlay">
+          <div class="p-tag">Innovation · Coffee</div>
+          <div class="p-title">Rifai Coffee Capsules</div>
+          <div class="p-desc">End-to-end capsule line from processing to packaging compliance.</div>
+        </div>
+      </div>
+
+      <div class="p-card reveal-scale">
+        <img src="https://img1.wsimg.com/isteam/ip/444b8d38-19da-4b89-bf4c-bb2ec2c3c6d1/0bd83342-bfa3-4135-a045-a65d9d1f1574.jpg" alt="ISO Audit"/>
+        <div class="p-card-overlay">
+          <div class="p-tag">Compliance · MENA</div>
+          <div class="p-title">ISO 22000:2018 Audits</div>
+          <div class="p-desc">IRCA-certified lead audits across Lebanon, Saudi Arabia, and the Gulf.</div>
+        </div>
+      </div>
+
+      <div class="p-card reveal-scale">
+        <img src="https://img1.wsimg.com/isteam/ip/444b8d38-19da-4b89-bf4c-bb2ec2c3c6d1/f740cb07-83ae-4b5a-828d-19a4d77d7074.jpg" alt="Food Science Projects"/>
+        <div class="p-card-overlay">
+          <div class="p-tag">Consulting · Regional</div>
+          <div class="p-title">MENA Food Projects</div>
+          <div class="p-desc">Full consultation on new food facilities and production line planning.</div>
+        </div>
+      </div>
+
+      <div class="p-card reveal-scale">
+        <img src="https://img1.wsimg.com/isteam/stock/3231/:/cr=t:0%25,l:0%25,w:66.67%25,h:100%25/rs=w:365,h:365,cg:true" alt="Shelf Life"/>
+        <div class="p-card-overlay">
+          <div class="p-tag">Quality · R&amp;D</div>
+          <div class="p-title">Shelf Life Extension</div>
+          <div class="p-desc">Applied food science to maximize product lifespan without compromise.</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ─── MEDIA & RECOGNITION ─── -->
+  <section class="media-section" id="recognition">
+    <div class="media-inner">
+      <div class="section-eyebrow">Media &amp; Recognition</div>
+      <h2>Featured Across<br>Regional &amp; International Media</h2>
+      <div class="media-logos reveal">
+        <div class="media-logo-item">
+          <div class="media-icon"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
+          <div class="media-name">MTV Lebanon</div>
+          <div class="media-type">Television</div>
+        </div>
+        <div class="media-logo-item">
+          <div class="media-icon"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
+          <div class="media-name">Future TV</div>
+          <div class="media-type">Television · Lebanon</div>
+        </div>
+        <div class="media-logo-item">
+          <div class="media-icon"><svg viewBox="0 0 24 24"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8V6Z"/></svg></div>
+          <div class="media-name">Annahar</div>
+          <div class="media-type">Newspaper · Lebanon</div>
+        </div>
+        <div class="media-logo-item">
+          <div class="media-icon"><svg viewBox="0 0 24 24"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8V6Z"/></svg></div>
+          <div class="media-name">Al-Dustoor</div>
+          <div class="media-type">Newspaper · Egypt</div>
+        </div>
+        <div class="media-logo-item">
+          <div class="media-icon"><svg viewBox="0 0 24 24"><path d="M2 16.1A5 5 0 0 1 5.9 20M2 12.05A9 9 0 0 1 9.95 20M2 8V6a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-6"/><line x1="2" y1="20" x2="2.01" y2="20"/></svg></div>
+          <div class="media-name">Radio Chin</div>
+          <div class="media-type">Radio · Canada</div>
+        </div>
+      </div>
+
+      <div class="memberships reveal">
+        <h3>Professional Memberships</h3>
+        <div class="membership-logos">
+          <img class="m-logo-img" src="https://img1.wsimg.com/isteam/ip/444b8d38-19da-4b89-bf4c-bb2ec2c3c6d1/ift%20logo.gif" alt="IFT" title="Institute of Food Technologists"/>
+          <img class="m-logo-img" src="https://img1.wsimg.com/isteam/ip/444b8d38-19da-4b89-bf4c-bb2ec2c3c6d1/aub%20alumni.jpg" alt="AUB Alumni" title="AUB Alumni Association"/>
+          <img class="m-logo-img" src="https://img1.wsimg.com/isteam/ip/444b8d38-19da-4b89-bf4c-bb2ec2c3c6d1/CIFST.jpg" alt="CIFST" title="Canadian Institute of Food Science & Technology"/>
+          <img class="m-logo-img" src="https://img1.wsimg.com/isteam/ip/444b8d38-19da-4b89-bf4c-bb2ec2c3c6d1/lasft.png" alt="LAFST" title="Louisiana Association of Food Science & Technology"/>
+          <img class="m-logo-img" src="https://img1.wsimg.com/isteam/ip/444b8d38-19da-4b89-bf4c-bb2ec2c3c6d1/CFS.jpeg" alt="CFS" title="Certified Food Scientist"/>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── M STRIPE ─── -->
+  <div class="m-stripe"></div>
+
+  <!-- ─── CTA ─── -->
+  <section class="cta-section" id="contact">
+    <div class="cta-bg-text">FOOD</div>
+    <div class="cta-inner">
+      <h2 class="reveal-left">Ready to<br>elevate your<br><em>food business?</em></h2>
+      <div class="cta-right-content reveal-right">
+        <p>From ISO compliance to full-scale product innovation — bring your challenge, and let's build the solution together.</p>
+        <div class="cta-btns">
+          <a href="mailto:contact@samerharb.com" class="btn-primary">Send an Email ↗</a>
+          <a href="https://samerharb.com" target="_blank" class="btn-ghost">Visit Full Site</a>
+        </div>
+        <div class="cta-location-list">
+          <div class="loc-item"><span class="loc-dot"></span><span><span class="loc-country">Lebanon</span> — Domestic market &amp; academic mentorship</span></div>
+          <div class="loc-item"><span class="loc-dot"></span><span><span class="loc-country">Saudi Arabia</span> — Large-scale project compliance</span></div>
+          <div class="loc-item"><span class="loc-dot"></span><span><span class="loc-country">Egypt · Kuwait · Bahrain</span> — Supply chain &amp; ERP</span></div>
+          <div class="loc-item"><span class="loc-dot"></span><span><span class="loc-country">North America</span> — International labeling &amp; launch</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── FOOTER ─── -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div>
+          <div class="footer-brand-name">Samer Harb</div>
+          <div class="footer-brand-desc">Strategic Food Industry Consultant &amp; Certified Food Scientist. First Lebanese CFS. ISO 22000:2018 Lead Auditor (IRCA-UK). 25+ years across MENA.</div>
+          <div class="footer-social">
+            <a href="https://twitter.com/Samersamiharb" target="_blank" title="Twitter" style="display:flex;align-items:center;justify-content:center;">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.737-8.835L1.254 2.25H8.08l4.253 5.622 5.91-5.622Zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+            <a href="https://samerharb.com" target="_blank" title="Website" style="display:flex;align-items:center;justify-content:center;">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            </a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-title">Services</div>
+          <ul>
+            <li><a href="#services">Food Projects</a></li>
+            <li><a href="#services">Shelf Life &amp; QC</a></li>
+            <li><a href="#services">Nutritional Labeling</a></li>
+            <li><a href="#services">Supply Chain</a></li>
+            <li><a href="#services">Product Development</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-title">About</div>
+          <ul>
+            <li><a href="#about">Credentials</a></li>
+            <li><a href="#portfolio">Portfolio</a></li>
+            <li><a href="#recognition">Media</a></li>
+            <li><a href="#recognition">Memberships</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-title">Contact</div>
+          <ul>
+            <li><a href="https://samerharb.com" target="_blank">samerharb.com</a></li>
+            <li><a href="#contact">Book Consultation</a></li>
+            <li><a href="mailto:contact@samerharb.com">Email Directly</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span class="footer-copy">© 2026 Samer Harb. All rights reserved.</span>
+        <div class="footer-bottom-links">
+          <a href="#">Privacy</a>
+          <a href="#">Terms</a>
+          <a href="https://samerharb.com" target="_blank">Original Site</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ── LENIS SMOOTH SCROLL ──
+    const lenis = new Lenis({ lerp: 0.08, smoothWheel: true });
+    function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+    requestAnimationFrame(raf);
+
+    // ── GSAP REGISTER ──
+    gsap.registerPlugin(ScrollTrigger);
+
+    // ── CURSOR ──
+    const cursor = document.getElementById('cursor');
+    const cursorRing = document.getElementById('cursorRing');
+    let mx = window.innerWidth/2, my = window.innerHeight/2;
+    let rx = mx, ry = my;
+    document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+    gsap.ticker.add(() => {
+      cursor.style.left = mx + 'px';
+      cursor.style.top  = my + 'px';
+      rx += (mx - rx) * 0.12;
+      ry += (my - ry) * 0.12;
+      cursorRing.style.left = rx + 'px';
+      cursorRing.style.top  = ry + 'px';
+    });
+
+    // ── NAV SCROLL STYLE ──
+    ScrollTrigger.create({
+      start: 'top -60',
+      onEnter:      () => document.getElementById('nav').classList.add('scrolled'),
+      onLeaveBack:  () => document.getElementById('nav').classList.remove('scrolled'),
+    });
+
+    // ── HERO PARALLAX ──
+    gsap.to('#heroImg', {
+      yPercent: 20,
+      ease: 'none',
+      scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true }
+    });
+
+    // ── HERO TEXT ANIMATION ──
+    const tl = gsap.timeline({ delay: 0.2 });
+    tl.to('.hero-tag', { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out' })
+      .to('.hero-h1 .word', {
+        y: 0, duration: 0.85, ease: 'power4.out', stagger: 0.1
+      }, '-=0.3')
+      .to('.hero-right', { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' }, '-=0.4');
+
+    // ── HERO STAT COUNTERS (fire on page load after hero animates in) ──
+    document.querySelectorAll('.stat-val[data-count]').forEach(el => {
+      const target  = parseInt(el.dataset.count);
+      const hasPct  = el.textContent.includes('+');
+      tl.to({ val: 0 }, {
+        val: target,
+        duration: 1.6,
+        ease: 'power2.out',
+        onUpdate: function() {
+          el.querySelector('span').textContent = Math.round(this.targets()[0].val);
+        }
+      }, '-=1.2');
+    });
+
+    // ── COUNTER ANIMATION ──
+    document.querySelectorAll('.counter-el').forEach(el => {
+      const target = parseInt(el.dataset.target);
+      const suffix = el.querySelector('em')?.textContent || '';
+      ScrollTrigger.create({
+        trigger: el,
+        start: 'top 85%',
+        once: true,
+        onEnter: () => {
+          gsap.to({ val: 0 }, {
+            val: target,
+            duration: 1.8,
+            ease: 'power2.out',
+            onUpdate: function() {
+              el.innerHTML = Math.round(this.targets()[0].val) + '<em>' + suffix + '</em>';
+            }
+          });
+        }
+      });
+    });
+
+    // ── SCROLL REVEALS ──
+    gsap.utils.toArray('.reveal').forEach(el => {
+      gsap.to(el, {
+        opacity: 1, y: 0, duration: 0.9, ease: 'power3.out',
+        scrollTrigger: { trigger: el, start: 'top 88%', once: true }
+      });
+    });
+    gsap.utils.toArray('.reveal-left').forEach(el => {
+      gsap.to(el, {
+        opacity: 1, x: 0, duration: 1, ease: 'power3.out',
+        scrollTrigger: { trigger: el, start: 'top 85%', once: true }
+      });
+    });
+    gsap.utils.toArray('.reveal-right').forEach(el => {
+      gsap.to(el, {
+        opacity: 1, x: 0, duration: 1, ease: 'power3.out',
+        scrollTrigger: { trigger: el, start: 'top 85%', once: true }
+      });
+    });
+    gsap.utils.toArray('.reveal-scale').forEach((el, i) => {
+      gsap.to(el, {
+        opacity: 1, scale: 1, duration: 1, ease: 'power3.out',
+        scrollTrigger: { trigger: el, start: 'top 88%', once: true },
+        delay: i * 0.08
+      });
+    });
+
+    // ── STAGGER SERVICE ITEMS ──
+    gsap.utils.toArray('.svc-item').forEach((el, i) => {
+      gsap.fromTo(el,
+        { opacity: 0, x: -20 },
+        {
+          opacity: 1, x: 0, duration: 0.7, ease: 'power2.out',
+          scrollTrigger: { trigger: el, start: 'top 90%', once: true },
+          delay: i * 0.06
+        }
+      );
+    });
+
+    // ── PORTFOLIO BENTO STAGGER ──
+    gsap.utils.toArray('.p-card').forEach((el, i) => {
+      gsap.fromTo(el,
+        { opacity: 0, y: 40 },
+        {
+          opacity: 1, y: 0, duration: 0.9, ease: 'power3.out',
+          scrollTrigger: { trigger: el, start: 'top 90%', once: true },
+          delay: i * 0.1
+        }
+      );
+    });
+
+    // ── MEMBERSHIP LOGOS STAGGER ──
+    gsap.utils.toArray('.m-logo-img').forEach((el, i) => {
+      gsap.fromTo(el,
+        { opacity: 0, y: 16 },
+        {
+          opacity: 0.45, y: 0, duration: 0.7, ease: 'power2.out',
+          scrollTrigger: { trigger: el, start: 'top 90%', once: true },
+          delay: i * 0.1
+        }
+      );
+    });
+
+    // ── CTA BG TEXT PARALLAX ──
+    gsap.to('.cta-bg-text', {
+      y: -60, ease: 'none',
+      scrollTrigger: {
+        trigger: '.cta-section',
+        start: 'top bottom', end: 'bottom top',
+        scrub: true
+      }
+    });
+
+    // ── MAGNETIC BUTTONS ──
+    document.querySelectorAll('.btn-primary, .btn-ghost, .nav-cta').forEach(btn => {
+      btn.addEventListener('mousemove', e => {
+        const r = btn.getBoundingClientRect();
+        const dx = (e.clientX - r.left - r.width/2)  * 0.15;
+        const dy = (e.clientY - r.top  - r.height/2) * 0.15;
+        gsap.to(btn, { x: dx, y: dy, duration: 0.4, ease: 'power2.out' });
+      });
+      btn.addEventListener('mouseleave', () => {
+        gsap.to(btn, { x: 0, y: 0, duration: 0.5, ease: 'elastic.out(1,0.5)' });
+      });
+    });
+  </script>
+</body>
+</html>
