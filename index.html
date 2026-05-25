@@ -414,6 +414,10 @@
       grid-template-rows: 360px 260px;
       gap: 3px;
     }
+    a.p-card {
+      display: block;
+      text-decoration: none;
+    }
     .p-card {
       position: relative; overflow: hidden;
       background: var(--dark-2);
@@ -443,6 +447,13 @@
       font-size: 13px; font-weight: 300; color: rgba(255,255,255,0.6);
       margin-top: 6px; line-height: 1.55;
     }
+    .p-link-hint {
+      font-size: 11px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase;
+      color: rgba(255,255,255,0); margin-top: 12px;
+      transition: color .3s;
+      display: inline-flex; align-items: center; gap: 6px;
+    }
+    .p-card:hover .p-link-hint { color: rgba(255,255,255,0.6); }
 
     /* ── MEDIA MARQUEE ── */
     .media-section {
@@ -459,6 +470,7 @@
       display: grid; grid-template-columns: repeat(5, 1fr);
       gap: 0; border: 1px solid var(--line);
     }
+    a.media-logo-item { text-decoration: none; cursor: none; }
     .media-logo-item {
       padding: 32px 24px;
       border-right: 1px solid var(--line);
@@ -922,50 +934,55 @@
     </div>
     <div class="portfolio-bento">
 
-      <div class="p-card reveal-scale">
+      <a class="p-card reveal-scale" href="https://www.instagram.com/yaza.foods?igsh=MXB6d3RjY29sNXZ2ZQ==" target="_blank" rel="noopener">
         <img src="https://img1.wsimg.com/isteam/ip/444b8d38-19da-4b89-bf4c-bb2ec2c3c6d1/35ad545c-b089-4a22-83df-e5a17b26a364.jpg" alt="Yaza Labneh"/>
         <div class="p-card-overlay">
           <div class="p-tag">Product Development · USA</div>
           <div class="p-title">Yaza Labneh</div>
           <div class="p-desc">Premium Lebanese dairy brand formulated and labeled for the American market.</div>
+          <div class="p-link-hint">View on Instagram →</div>
         </div>
-      </div>
+      </a>
 
-      <div class="p-card reveal-scale">
+      <a class="p-card reveal-scale" href="https://www.instagram.com/p/C6QzDLmvj0s/?igsh=c2Y4cXcwNHMydHVq" target="_blank" rel="noopener">
         <img src="https://img1.wsimg.com/isteam/ip/444b8d38-19da-4b89-bf4c-bb2ec2c3c6d1/0b03709f-b9ef-46ba-a58b-241f3bc99e6d.jpg" alt="Rifai Coffee Capsules"/>
         <div class="p-card-overlay">
           <div class="p-tag">Innovation · Coffee</div>
           <div class="p-title">Rifai Coffee Capsules</div>
           <div class="p-desc">End-to-end capsule line from processing to packaging compliance.</div>
+          <div class="p-link-hint">View on Instagram →</div>
         </div>
-      </div>
+      </a>
 
-      <div class="p-card reveal-scale">
+      <a class="p-card reveal-scale" href="https://youtu.be/2JLbpQFriFM" target="_blank" rel="noopener">
         <img src="https://img1.wsimg.com/isteam/ip/444b8d38-19da-4b89-bf4c-bb2ec2c3c6d1/0bd83342-bfa3-4135-a045-a65d9d1f1574.jpg" alt="ISO Audit"/>
         <div class="p-card-overlay">
           <div class="p-tag">Compliance · MENA</div>
           <div class="p-title">ISO 22000:2018 Audits</div>
           <div class="p-desc">IRCA-certified lead audits across Lebanon, Saudi Arabia, and the Gulf.</div>
+          <div class="p-link-hint">Watch Interview →</div>
         </div>
-      </div>
+      </a>
 
-      <div class="p-card reveal-scale">
+      <a class="p-card reveal-scale" href="https://samerharb.com/other-food-projects" target="_blank" rel="noopener">
         <img src="https://img1.wsimg.com/isteam/ip/444b8d38-19da-4b89-bf4c-bb2ec2c3c6d1/f740cb07-83ae-4b5a-828d-19a4d77d7074.jpg" alt="Food Science Projects"/>
         <div class="p-card-overlay">
           <div class="p-tag">Consulting · Regional</div>
           <div class="p-title">MENA Food Projects</div>
           <div class="p-desc">Full consultation on new food facilities and production line planning.</div>
+          <div class="p-link-hint">View All Projects →</div>
         </div>
-      </div>
+      </a>
 
-      <div class="p-card reveal-scale">
+      <a class="p-card reveal-scale" href="https://www.aub.edu.lb/fafs/news/Pages/2019_Samer-Harb-CFS-Certification.aspx" target="_blank" rel="noopener">
         <img src="https://img1.wsimg.com/isteam/stock/3231/:/cr=t:0%25,l:0%25,w:66.67%25,h:100%25/rs=w:365,h:365,cg:true" alt="Shelf Life"/>
         <div class="p-card-overlay">
           <div class="p-tag">Quality · R&amp;D</div>
           <div class="p-title">Shelf Life Extension</div>
           <div class="p-desc">Applied food science to maximize product lifespan without compromise.</div>
+          <div class="p-link-hint">Read AUB Article →</div>
         </div>
-      </div>
+      </a>
 
     </div>
   </section>
@@ -976,41 +993,51 @@
       <div class="section-eyebrow">Media &amp; Recognition</div>
       <h2>Featured Across<br>Regional &amp; International Media</h2>
       <div class="media-logos reveal">
-        <div class="media-logo-item">
+        <a class="media-logo-item" href="https://www.youtube.com/watch?v=h15IqzRK1bM" target="_blank" rel="noopener">
           <div class="media-icon"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
           <div class="media-name">MTV Lebanon</div>
           <div class="media-type">Television</div>
-        </div>
-        <div class="media-logo-item">
+        </a>
+        <a class="media-logo-item" href="https://youtu.be/2JLbpQFriFM" target="_blank" rel="noopener">
           <div class="media-icon"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
           <div class="media-name">Future TV</div>
           <div class="media-type">Television · Lebanon</div>
-        </div>
-        <div class="media-logo-item">
+        </a>
+        <a class="media-logo-item" href="https://www.annahar.com/article/916392-%D8%A3%D9%88%D9%84-%D8%B9%D8%A7%D9%84%D9%85-%D8%A3%D8%BA%D8%B0%D9%8A%D8%A9-%D9%84%D8%A8%D9%86%D8%A7%D9%86%D9%8A-%D9%85%D8%B9%D8%AA%D9%85%D8%AF-%D9%81%D9%8A-%D8%A7%D9%84%D8%B9%D8%A7%D9%84%D9%85-%D9%85%D8%A7-%D8%A8%D8%B9%D9%85%D8%B1%D9%83-%D8%AA%D9%82%D9%88%D9%84-%D9%85%D8%A7-%D9%81%D9%8A%D9%86%D9%8A" target="_blank" rel="noopener">
           <div class="media-icon"><svg viewBox="0 0 24 24"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8V6Z"/></svg></div>
           <div class="media-name">Annahar</div>
           <div class="media-type">Newspaper · Lebanon</div>
-        </div>
-        <div class="media-logo-item">
+        </a>
+        <a class="media-logo-item" href="https://www.dostor.org/2503751" target="_blank" rel="noopener">
           <div class="media-icon"><svg viewBox="0 0 24 24"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8V6Z"/></svg></div>
           <div class="media-name">Al-Dustoor</div>
           <div class="media-type">Newspaper · Egypt</div>
-        </div>
-        <div class="media-logo-item">
+        </a>
+        <a class="media-logo-item" href="https://www.youtube.com/watch?v=_66ttjjFzGA" target="_blank" rel="noopener">
           <div class="media-icon"><svg viewBox="0 0 24 24"><path d="M2 16.1A5 5 0 0 1 5.9 20M2 12.05A9 9 0 0 1 9.95 20M2 8V6a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-6"/><line x1="2" y1="20" x2="2.01" y2="20"/></svg></div>
           <div class="media-name">Radio Chin</div>
           <div class="media-type">Radio · Canada</div>
-        </div>
+        </a>
       </div>
 
       <div class="memberships reveal">
         <h3>Professional Memberships</h3>
         <div class="membership-logos">
-          <img class="m-logo-img" src="https://img1.wsimg.com/isteam/ip/444b8d38-19da-4b89-bf4c-bb2ec2c3c6d1/ift%20logo.gif" alt="IFT" title="Institute of Food Technologists"/>
-          <img class="m-logo-img" src="https://img1.wsimg.com/isteam/ip/444b8d38-19da-4b89-bf4c-bb2ec2c3c6d1/aub%20alumni.jpg" alt="AUB Alumni" title="AUB Alumni Association"/>
-          <img class="m-logo-img" src="https://img1.wsimg.com/isteam/ip/444b8d38-19da-4b89-bf4c-bb2ec2c3c6d1/CIFST.jpg" alt="CIFST" title="Canadian Institute of Food Science & Technology"/>
-          <img class="m-logo-img" src="https://img1.wsimg.com/isteam/ip/444b8d38-19da-4b89-bf4c-bb2ec2c3c6d1/lasft.png" alt="LAFST" title="Louisiana Association of Food Science & Technology"/>
-          <img class="m-logo-img" src="https://img1.wsimg.com/isteam/ip/444b8d38-19da-4b89-bf4c-bb2ec2c3c6d1/CFS.jpeg" alt="CFS" title="Certified Food Scientist"/>
+          <a href="https://www.ift.org/" target="_blank" rel="noopener" title="Institute of Food Technologists" style="cursor:none;display:inline-flex;">
+            <img class="m-logo-img" src="https://img1.wsimg.com/isteam/ip/444b8d38-19da-4b89-bf4c-bb2ec2c3c6d1/ift%20logo.gif" alt="IFT"/>
+          </a>
+          <a href="https://alumni.aub.edu.lb/" target="_blank" rel="noopener" title="AUB Alumni Association" style="cursor:none;display:inline-flex;">
+            <img class="m-logo-img" src="https://img1.wsimg.com/isteam/ip/444b8d38-19da-4b89-bf4c-bb2ec2c3c6d1/aub%20alumni.jpg" alt="AUB Alumni"/>
+          </a>
+          <a href="https://www.cifst.ca/" target="_blank" rel="noopener" title="Canadian Institute of Food Science & Technology" style="cursor:none;display:inline-flex;">
+            <img class="m-logo-img" src="https://img1.wsimg.com/isteam/ip/444b8d38-19da-4b89-bf4c-bb2ec2c3c6d1/CIFST.jpg" alt="CIFST"/>
+          </a>
+          <a href="http://lafst.org/" target="_blank" rel="noopener" title="Lebanese Association for Food Science & Technology" style="cursor:none;display:inline-flex;">
+            <img class="m-logo-img" src="https://img1.wsimg.com/isteam/ip/444b8d38-19da-4b89-bf4c-bb2ec2c3c6d1/lasft.png" alt="LAFST"/>
+          </a>
+          <a href="http://bcert.me/suwlnfeyk" target="_blank" rel="noopener" title="Certified Food Scientist Credential" style="cursor:none;display:inline-flex;">
+            <img class="m-logo-img" src="https://img1.wsimg.com/isteam/ip/444b8d38-19da-4b89-bf4c-bb2ec2c3c6d1/CFS.jpeg" alt="CFS"/>
+          </a>
         </div>
       </div>
     </div>
@@ -1048,11 +1075,20 @@
           <div class="footer-brand-name">Samer Harb</div>
           <div class="footer-brand-desc">Strategic Food Industry Consultant &amp; Certified Food Scientist. First Lebanese CFS. ISO 22000:2018 Lead Auditor (IRCA-UK). 25+ years across MENA.</div>
           <div class="footer-social">
-            <a href="https://twitter.com/Samersamiharb" target="_blank" title="Twitter" style="display:flex;align-items:center;justify-content:center;">
+            <a href="https://www.facebook.com/Samerfoodconsultant/" target="_blank" title="Facebook" style="display:flex;align-items:center;justify-content:center;">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            </a>
+            <a href="https://www.instagram.com/internationalfoodexperts" target="_blank" title="Instagram" style="display:flex;align-items:center;justify-content:center;">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            </a>
+            <a href="https://www.linkedin.com/in/samerharb/" target="_blank" title="LinkedIn" style="display:flex;align-items:center;justify-content:center;">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            </a>
+            <a href="https://www.x.com/Samersamiharb" target="_blank" title="X / Twitter" style="display:flex;align-items:center;justify-content:center;">
               <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.737-8.835L1.254 2.25H8.08l4.253 5.622 5.91-5.622Zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
             </a>
-            <a href="https://samerharb.com" target="_blank" title="Website" style="display:flex;align-items:center;justify-content:center;">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            <a href="https://www.youtube.com/Hsamer1234" target="_blank" title="YouTube" style="display:flex;align-items:center;justify-content:center;">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="white"/></svg>
             </a>
           </div>
         </div>
