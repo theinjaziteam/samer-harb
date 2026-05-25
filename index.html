@@ -613,9 +613,74 @@
       .about-photo-cell img { min-height: 420px; max-height: 480px; width: 100%; }
       .portfolio-bento { grid-template-rows: 280px 220px; }
     }
+    /* ── HAMBURGER MENU ── */
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: none;
+      padding: 8px;
+      background: none;
+      border: none;
+      z-index: 200;
+    }
+    .nav-hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--white);
+      transition: background .3s, transform .35s var(--ease-out), opacity .3s;
+    }
+    nav.scrolled .nav-hamburger span { background: var(--ink); }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 150;
+      background: rgba(26,33,41,0.98);
+      backdrop-filter: blur(16px);
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 36px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .35s var(--ease-out);
+    }
+    .mobile-menu.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+    .mobile-menu a {
+      font-size: 36px;
+      font-weight: 700;
+      color: rgba(255,255,255,0.85);
+      text-decoration: none;
+      letter-spacing: -0.5px;
+      transition: color .2s;
+    }
+    .mobile-menu a:hover { color: var(--blue); }
+    .mobile-menu .m-cta {
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--white);
+      background: var(--blue);
+      padding: 14px 32px;
+      margin-top: 12px;
+    }
+
     @media (max-width: 900px) {
       nav { padding: 0 24px; }
       .nav-links { display: none; }
+      .nav-cta { display: none; }
+      .nav-hamburger { display: flex; }
+      .mobile-menu { display: flex; }
       .hero-content { grid-template-columns: 1fr; gap: 24px; padding: 0 24px; }
       .hero-right { display: none; }
       .about, .services, .portfolio, .media-section, .cta-section { padding-left: 24px; padding-right: 24px; }
@@ -662,8 +727,20 @@
         <li><a href="#recognition">Recognition</a></li>
       </ul>
       <a href="#contact" class="nav-cta">Book a Consultation</a>
+      <button class="nav-hamburger" id="hamburger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </nav>
+
+  <!-- ─── MOBILE MENU ─── -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#about" class="mob-link">About</a>
+    <a href="#services" class="mob-link">Services</a>
+    <a href="#portfolio" class="mob-link">Portfolio</a>
+    <a href="#recognition" class="mob-link">Recognition</a>
+    <a href="#contact" class="mob-link m-cta">Book Consultation</a>
+  </div>
 
   <!-- ─── HERO ─── -->
   <section class="hero" id="hero">
@@ -1023,6 +1100,30 @@
     const lenis = new Lenis({ lerp: 0.08, smoothWheel: true });
     function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
     requestAnimationFrame(raf);
+
+    // ── ANCHOR SCROLL FIX (Lenis must handle all hash links manually) ──
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const href = this.getAttribute('href');
+        if (!href || href === '#') return;
+        e.preventDefault();
+        const target = document.querySelector(href);
+        if (target) lenis.scrollTo(target, { offset: -64, duration: 1.2 });
+        // close mobile menu if open
+        mobileMenu.classList.remove('open');
+        hamburger.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    });
+
+    // ── HAMBURGER / MOBILE MENU ──
+    const hamburger   = document.getElementById('hamburger');
+    const mobileMenu  = document.getElementById('mobileMenu');
+    hamburger.addEventListener('click', () => {
+      const isOpen = mobileMenu.classList.toggle('open');
+      hamburger.classList.toggle('open', isOpen);
+      document.body.style.overflow = isOpen ? 'hidden' : '';
+    });
 
     // ── GSAP REGISTER ──
     gsap.registerPlugin(ScrollTrigger);
