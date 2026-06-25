@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>شكراً لك — سامر حرب</title>
+  <link rel="icon" href="https://img1.wsimg.com/isteam/ip/444b8d38-19da-4b89-bf4c-bb2ec2c3c6d1/logo/a260a6c7-3ef4-40ab-bab9-99ee7f8ea3c9.jpeg"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;500;600;700;800;900&family=Cairo:wght@400;700&display=swap" rel="stylesheet"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <style>
+    :root{
+      --blue:#1c69d4;--blue-dark:#0653b6;--dark:#1a2129;
+      --ink:#262626;--body:#3c3c3c;--muted:#6b6b6b;--soft:#9a9a9a;
+      --line:#e6e6e6;--white:#ffffff;--off:#f7f7f7;
+      --font:'Noto Sans Arabic','Cairo',system-ui,sans-serif;--ease-out:cubic-bezier(0.16,1,0.3,1);
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:var(--font);background:var(--dark);color:var(--white);min-height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden;direction:rtl}
+    .ty-wrap{text-align:center;max-width:580px;padding:48px 24px;opacity:0}
+    .ty-icon{width:80px;height:80px;border:2px solid var(--blue);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 32px;color:var(--blue);font-size:32px}
+    .ty-eyebrow{font-size:13px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--blue);margin-bottom:20px}
+    h1{font-size:clamp(32px,4.5vw,50px);font-weight:800;line-height:1.2;margin-bottom:20px}
+    h1 em{color:var(--blue);font-style:normal}
+    p{font-size:18px;font-weight:400;line-height:1.8;color:rgba(255,255,255,0.7);margin-bottom:40px}
+    .ty-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+    .btn-primary{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:700;color:var(--white);background:var(--blue);padding:16px 32px;text-decoration:none;transition:background .2s,transform .2s}
+    .btn-primary:hover{background:var(--blue-dark);transform:translateY(-2px)}
+    .btn-ghost{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:700;color:rgba(255,255,255,0.7);border:1px solid rgba(255,255,255,0.2);padding:16px 32px;text-decoration:none;transition:border-color .2s,color .2s,transform .2s}
+    .btn-ghost:hover{border-color:rgba(255,255,255,0.6);color:var(--white);transform:translateY(-2px)}
+    .m-stripe{position:fixed;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#e22718 0%,#1c69d4 50%,#0066b1 100%)}
+    .countdown{font-size:13px;color:rgba(255,255,255,0.4);margin-top:32px}
+  </style>
+</head>
+<body>
+  <div class="m-stripe"></div>
+  <div class="ty-wrap" id="tyWrap">
+    <div class="ty-icon">✓</div>
+    <div class="ty-eyebrow">تم استلام الرسالة</div>
+    <h1>شكراً <em>لتواصلك</em><br>معنا</h1>
+    <p>تم إرسال طلب الاستشارة بنجاح. سأراجع رسالتك وأرد عليك خلال 24-48 ساعة عمل.</p>
+    <div class="ty-btns">
+      <a href="../index-ar.html" class="btn-primary">العودة للرئيسية ↗</a>
+      <a href="../about-us/index-ar.html" class="btn-ghost">تعرّف أكثر عليّ</a>
+    </div>
+    <p class="countdown" id="countdown">إعادة التوجيه للرئيسية خلال <span id="countNum">10</span> ثوانٍ…</p>
+  </div>
+
+  <script>
+    gsap.to('#tyWrap', { opacity:1, y:0, duration:1, ease:'power3.out', delay:0.2 });
+    gsap.from('#tyWrap', { y:40 });
+
+    let count = 10;
+    const el = document.getElementById('countNum');
+    const interval = setInterval(() => {
+      count--;
+      el.textContent = count;
+      if (count <= 0) {
+        clearInterval(interval);
+        window.location.href = '../index-ar.html';
+      }
+    }, 1000);
+  </script>
+</body>
+</html>

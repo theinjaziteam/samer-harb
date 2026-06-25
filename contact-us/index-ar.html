@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Book a Consultation — Samer Harb</title>
-  <meta name="description" content="Book a consultation with Samer Harb, Strategic Food Industry Consultant. ISO compliance, shelf life, labeling, product development across the MENA region."/>
+  <title>احجز استشارة — سامر حرب</title>
+  <meta name="description" content="احجز استشارة مع سامر حرب، مستشار استراتيجي في صناعة الغذاء. الامتثال لمعايير ISO، مدة الصلاحية، التسمية، وتطوير المنتجات حول العالم."/>
   <link rel="icon" href="https://img1.wsimg.com/isteam/ip/444b8d38-19da-4b89-bf4c-bb2ec2c3c6d1/logo/a260a6c7-3ef4-40ab-bab9-99ee7f8ea3c9.jpeg"/>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;500;600;700;800;900&family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet"/>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
@@ -16,27 +16,24 @@
       --blue:#1c69d4;--blue-dark:#0653b6;--dark:#1a2129;--dark-2:#262e38;
       --ink:#262626;--body:#3c3c3c;--muted:#6b6b6b;--soft:#9a9a9a;
       --line:#e6e6e6;--white:#ffffff;--off:#f7f7f7;--card:#fafafa;
-      --font:'Inter',system-ui,sans-serif;--ease-out:cubic-bezier(0.16,1,0.3,1);
+      --font:'Noto Sans Arabic','Cairo',system-ui,sans-serif;--ease-out:cubic-bezier(0.16,1,0.3,1);
     }
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     html{scroll-behavior:auto}
-    body{font-family:var(--font);color:var(--body);background:var(--white);overflow-x:hidden}
+    body{font-family:var(--font);color:var(--body);background:var(--white);overflow-x:hidden;direction:rtl;font-size:16px;-webkit-font-smoothing:antialiased}
 
     /* ── NAV ── */
     nav{position:fixed;top:0;left:0;right:0;z-index:100;height:64px;display:flex;align-items:center;padding:0 48px;background:rgba(255,255,255,0.96);box-shadow:0 1px 0 var(--line);backdrop-filter:blur(12px)}
     .nav-inner{width:100%;display:flex;align-items:center;justify-content:space-between}
     .nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none}
     .nav-logo img{width:36px;height:36px;border-radius:50%;object-fit:cover;border:2px solid var(--line)}
-    .nav-name{font-size:15px;font-weight:700;letter-spacing:.2px;color:var(--ink)}
-    .nav-links{display:flex;gap:28px;list-style:none}
-    .nav-links a{font-size:13px;font-weight:400;letter-spacing:.4px;color:var(--muted);text-decoration:none;transition:color .2s;position:relative}
-    .nav-links a::after{content:'';position:absolute;bottom:-2px;left:0;right:100%;height:1px;background:var(--blue);transition:right .3s var(--ease-out)}
-    .nav-links a:hover::after{right:0}
+    .nav-name{font-size:16px;font-weight:700;letter-spacing:.2px;color:var(--ink)}
+    .nav-links{display:flex;gap:28px;list-style:none;flex-direction:row-reverse}
+    .nav-links a{font-size:15px;font-weight:500;color:var(--muted);text-decoration:none;transition:color .2s;position:relative}
     .nav-links a:hover{color:var(--ink)}
-    .nav-links a.active{color:var(--blue)}
-    .nav-cta{font-size:13px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--white);background:var(--blue);border:none;padding:11px 24px;text-decoration:none;display:inline-block;transition:background .2s,transform .2s}
+    .nav-cta{font-size:13px;font-weight:700;letter-spacing:.5px;color:var(--white);background:var(--blue);border:none;padding:11px 24px;text-decoration:none;display:inline-block;transition:background .2s,transform .2s}
     .nav-cta:hover{background:var(--blue-dark);transform:translateY(-1px)}
-    .nav-lang{font-size:13px;font-weight:700;letter-spacing:.5px;color:var(--muted);text-decoration:none;transition:color .2s;margin-right:24px}
+    .nav-lang{font-size:13px;font-weight:700;letter-spacing:.5px;color:var(--muted);text-decoration:none;transition:color .2s;margin-left:24px}
     .nav-lang:hover{color:var(--blue)}
     .nav-hamburger{display:none;flex-direction:column;gap:5px;padding:8px;background:none;border:none;cursor:pointer;z-index:200}
     .nav-hamburger span{display:block;width:24px;height:2px;background:var(--ink);transition:transform .35s var(--ease-out),opacity .3s}
@@ -45,76 +42,74 @@
     .nav-hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
     .mobile-menu{display:none;position:fixed;inset:0;z-index:150;background:rgba(26,33,41,0.98);backdrop-filter:blur(16px);flex-direction:column;align-items:center;justify-content:center;gap:32px;opacity:0;pointer-events:none;transition:opacity .35s var(--ease-out)}
     .mobile-menu.open{opacity:1;pointer-events:all}
-    .mobile-menu a{font-size:32px;font-weight:700;color:rgba(255,255,255,0.85);text-decoration:none;transition:color .2s}
+    .mobile-menu a{font-size:30px;font-weight:700;color:rgba(255,255,255,0.85);text-decoration:none;transition:color .2s}
     .mobile-menu a:hover{color:var(--blue)}
-    .mobile-menu .m-cta{font-size:14px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--white);background:var(--blue);padding:14px 32px;margin-top:8px}
+    .mobile-menu .m-cta{font-size:14px;font-weight:700;color:var(--white);background:var(--blue);padding:14px 32px;margin-top:8px}
 
     /* ── PAGE HERO ── */
     .page-hero{background:var(--dark);padding:120px 48px 80px;position:relative;overflow:hidden;margin-top:64px}
     .page-hero-bg{position:absolute;inset:0;background:linear-gradient(135deg,#0f1621 0%,#1a2129 50%,#0f2040 100%);opacity:0.95}
-    .ph-stripe{position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#0066b1 0%,#1c69d4 50%,#e22718 100%)}
+    .ph-stripe{position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#e22718 0%,#1c69d4 50%,#0066b1 100%)}
     .page-hero-inner{position:relative;max-width:900px}
-    .ph-eyebrow{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--blue);margin-bottom:20px;display:flex;align-items:center;gap:10px}
+    .ph-eyebrow{font-size:13px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--blue);margin-bottom:20px;display:flex;align-items:center;gap:10px}
     .ph-eyebrow::before{content:'';display:block;width:24px;height:1.5px;background:var(--blue)}
-    .page-hero h1{font-size:clamp(36px,5vw,72px);font-weight:700;line-height:1.05;color:var(--white);margin-bottom:20px}
+    .page-hero h1{font-size:clamp(32px,4.5vw,62px);font-weight:800;line-height:1.2;color:var(--white);margin-bottom:20px}
     .page-hero h1 em{color:var(--blue);font-style:normal}
-    .page-hero p{font-size:17px;font-weight:300;line-height:1.65;color:rgba(255,255,255,0.6);max-width:600px}
+    .page-hero p{font-size:18px;font-weight:400;line-height:1.75;color:rgba(255,255,255,0.7);max-width:600px}
 
     /* ── CONTACT LAYOUT ── */
     .contact-wrap{max-width:1340px;margin:0 auto;padding:80px 48px;display:grid;grid-template-columns:1fr 420px;gap:80px;align-items:start}
-    .form-section{}
     .form-section h2{font-size:28px;font-weight:700;color:var(--ink);margin-bottom:8px}
-    .form-section .subtitle{font-size:15px;font-weight:300;color:var(--muted);margin-bottom:40px;line-height:1.6}
+    .form-section .subtitle{font-size:16px;font-weight:400;color:var(--muted);margin-bottom:40px;line-height:1.7}
 
     /* ── FORM ── */
     form.consult-form{display:flex;flex-direction:column;gap:20px}
     .form-row{display:grid;grid-template-columns:1fr 1fr;gap:20px}
     .field{display:flex;flex-direction:column;gap:6px}
-    .field label{font-size:12px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--ink)}
+    .field label{font-size:13px;font-weight:700;letter-spacing:.3px;color:var(--ink)}
     .field input,.field select,.field textarea{
-      font-family:var(--font);font-size:15px;font-weight:300;color:var(--ink);
+      font-family:var(--font);font-size:15px;font-weight:400;color:var(--ink);
       background:var(--off);border:1px solid var(--line);
       padding:14px 16px;outline:none;width:100%;
       transition:border-color .2s,box-shadow .2s;
       -webkit-appearance:none;appearance:none;
+      text-align:right;
     }
     .field input::placeholder,.field textarea::placeholder{color:var(--soft)}
     .field input:focus,.field select:focus,.field textarea:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(28,105,212,0.12)}
-    .field select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236b6b6b' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center;padding-right:40px}
+    .field select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236b6b6b' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:left 16px center;padding-left:40px}
     .field textarea{resize:vertical;min-height:130px}
     .submit-btn{
       display:inline-flex;align-items:center;justify-content:center;gap:10px;
-      font-size:13px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;
+      font-size:14px;font-weight:700;letter-spacing:.3px;
       color:var(--white);background:var(--blue);border:none;padding:18px 40px;
       cursor:pointer;transition:background .2s,transform .25s var(--ease-out);
-      position:relative;overflow:hidden;
+      position:relative;overflow:hidden;font-family:var(--font);
     }
-    .submit-btn::after{content:'';position:absolute;inset:0;background:rgba(255,255,255,0.08);transform:translateX(-100%) skewX(-15deg);transition:transform .4s var(--ease-out)}
-    .submit-btn:hover::after{transform:translateX(100%) skewX(-15deg)}
     .submit-btn:hover{background:var(--blue-dark);transform:translateY(-2px)}
-    .form-note{font-size:12px;font-weight:300;color:var(--soft);line-height:1.6;margin-top:4px}
+    .form-note{font-size:13px;font-weight:400;color:var(--soft);line-height:1.7;margin-top:4px}
 
     /* ── SIDEBAR ── */
     .contact-sidebar{display:flex;flex-direction:column;gap:32px}
     .sidebar-card{background:var(--off);padding:32px;border-top:3px solid var(--blue)}
-    .sidebar-card h3{font-size:13px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--ink);margin-bottom:20px}
-    .info-item{display:flex;align-items:flex-start;gap:14px;margin-bottom:16px}
+    .sidebar-card h3{font-size:14px;font-weight:700;letter-spacing:.3px;text-transform:uppercase;color:var(--ink);margin-bottom:20px}
+    .info-item{display:flex;align-items:flex-start;gap:14px;margin-bottom:16px;flex-direction:row-reverse}
     .info-item:last-child{margin-bottom:0}
     .info-icon{width:36px;height:36px;background:var(--white);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--blue)}
-    .info-text-label{font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--soft);margin-bottom:3px}
-    .info-text-val{font-size:14px;font-weight:400;color:var(--ink);text-decoration:none}
+    .info-text-label{font-size:12px;font-weight:700;letter-spacing:.3px;text-transform:uppercase;color:var(--soft);margin-bottom:3px}
+    .info-text-val{font-size:15px;font-weight:400;color:var(--ink);text-decoration:none}
     .info-text-val:hover{color:var(--blue)}
     .hours-grid{display:flex;flex-direction:column;gap:8px}
-    .hours-row{display:flex;justify-content:space-between;align-items:center;font-size:13px;padding:8px 0;border-bottom:1px solid var(--line)}
+    .hours-row{display:flex;justify-content:space-between;align-items:center;font-size:14px;padding:8px 0;border-bottom:1px solid var(--line)}
     .hours-row:last-child{border-bottom:none}
     .hours-day{font-weight:400;color:var(--muted)}
     .hours-time{font-weight:700;color:var(--ink)}
-    .hours-time.closed{color:var(--soft);font-weight:300}
-    .social-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px}
+    .hours-time.closed{color:var(--soft);font-weight:400}
+    .social-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px;flex-direction:row-reverse}
     .soc-btn{width:40px;height:40px;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;color:var(--muted);text-decoration:none;transition:border-color .2s,color .2s,background .2s;font-size:15px}
     .soc-btn:hover{border-color:var(--blue);color:var(--blue);background:rgba(28,105,212,0.05)}
     .loc-list{display:flex;flex-direction:column;gap:8px}
-    .loc-row{display:flex;align-items:center;gap:10px;font-size:14px;color:var(--muted)}
+    .loc-row{display:flex;align-items:center;gap:10px;font-size:15px;color:var(--muted);flex-direction:row-reverse}
     .loc-dot{width:6px;height:6px;border-radius:50%;background:var(--blue);flex-shrink:0}
     .loc-country{font-weight:700;color:var(--ink)}
 
@@ -123,31 +118,30 @@
     .footer-inner{max-width:1340px;margin:0 auto}
     .footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;padding-bottom:48px;border-bottom:1px solid var(--line)}
     .footer-brand-name{font-size:17px;font-weight:700;color:var(--ink);margin-bottom:6px}
-    .footer-brand-desc{font-size:14px;font-weight:300;color:var(--muted);line-height:1.65;max-width:300px;margin-bottom:24px}
-    .footer-social{display:flex;gap:12px}
+    .footer-brand-desc{font-size:15px;font-weight:400;color:var(--muted);line-height:1.75;max-width:300px;margin-bottom:24px}
+    .footer-social{display:flex;gap:12px;flex-direction:row-reverse}
     .footer-social a{width:36px;height:36px;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:14px;color:var(--muted);text-decoration:none;transition:border-color .2s,color .2s,background .2s}
     .footer-social a:hover{border-color:var(--blue);color:var(--blue);background:rgba(28,105,212,0.05)}
-    .footer-col-title{font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--ink);margin-bottom:20px}
+    .footer-col-title{font-size:13px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--ink);margin-bottom:20px}
     .footer-col ul{list-style:none;display:flex;flex-direction:column;gap:10px}
-    .footer-col a{font-size:14px;font-weight:300;color:var(--muted);text-decoration:none;transition:color .2s}
+    .footer-col a{font-size:15px;font-weight:400;color:var(--muted);text-decoration:none;transition:color .2s}
     .footer-col a:hover{color:var(--blue)}
-    .footer-bottom{display:flex;align-items:center;justify-content:space-between;padding-top:24px}
-    .footer-copy{font-size:12px;color:var(--soft)}
-    .footer-bottom-links{display:flex;gap:24px}
-    .footer-bottom-links a{font-size:12px;color:var(--soft);text-decoration:none;transition:color .2s}
+    .footer-bottom{display:flex;align-items:center;justify-content:space-between;padding-top:24px;flex-direction:row-reverse}
+    .footer-copy{font-size:13px;color:var(--soft)}
+    .footer-bottom-links{display:flex;gap:24px;flex-direction:row-reverse}
+    .footer-bottom-links a{font-size:13px;color:var(--soft);text-decoration:none;transition:color .2s}
     .footer-bottom-links a:hover{color:var(--blue)}
 
     /* ── REVEALS ── */
     .reveal{opacity:0;transform:translateY(28px)}
-    .reveal-left{opacity:0;transform:translateX(-32px)}
-    .reveal-right{opacity:0;transform:translateX(32px)}
+    .reveal-left{opacity:0;transform:translateX(32px)}
+    .reveal-right{opacity:0;transform:translateX(-32px)}
 
     /* ── RESPONSIVE ── */
     @media(max-width:900px){
       nav{padding:0 24px}
       .nav-links,.nav-cta,.nav-lang{display:none}
       .nav-hamburger{display:flex}
-      .mobile-menu{display:flex}
       .page-hero{padding:100px 24px 60px}
       .contact-wrap{grid-template-columns:1fr;gap:48px;padding:48px 24px}
       .form-row{grid-template-columns:1fr}
@@ -165,20 +159,20 @@
   <!-- ─── NAV ─── -->
   <nav id="nav">
     <div class="nav-inner">
-      <a class="nav-logo" href="/">
-        <img src="https://img1.wsimg.com/isteam/ip/444b8d38-19da-4b89-bf4c-bb2ec2c3c6d1/logo/a260a6c7-3ef4-40ab-bab9-99ee7f8ea3c9.jpeg" alt="Samer Harb"/>
-        <span class="nav-name">Samer Harb</span>
+      <a class="nav-logo" href="../index-ar.html">
+        <img src="https://img1.wsimg.com/isteam/ip/444b8d38-19da-4b89-bf4c-bb2ec2c3c6d1/logo/a260a6c7-3ef4-40ab-bab9-99ee7f8ea3c9.jpeg" alt="سامر حرب"/>
+        <span class="nav-name">سامر حرب</span>
       </a>
       <ul class="nav-links">
-        <li><a href="/about-us">About</a></li>
-        <li><a href="/#services">Services</a></li>
-        <li><a href="/other-food-projects">Projects</a></li>
-        <li><a href="/faq">FAQ</a></li>
-        <li><a href="/reviews">Reviews</a></li>
+        <li><a href="../about-us/index-ar.html">عن سامر</a></li>
+        <li><a href="../index-ar.html#services">الخدمات</a></li>
+        <li><a href="../other-food-projects/index-ar.html">المشاريع</a></li>
+        <li><a href="../faq/index-ar.html">الأسئلة الشائعة</a></li>
+        <li><a href="../reviews/index-ar.html">التقييمات</a></li>
       </ul>
-      <a href="index-ar.html" class="nav-lang">ع</a>
-      <a href="/contact-us" class="nav-cta active" style="background:var(--blue-dark)">Book a Consultation</a>
-      <button class="nav-hamburger" id="hamburger" aria-label="Open menu">
+      <a href="index.html" class="nav-lang">EN</a>
+      <a href="index-ar.html" class="nav-cta" style="background:var(--blue-dark)">احجز استشارة</a>
+      <button class="nav-hamburger" id="hamburger" aria-label="فتح القائمة">
         <span></span><span></span><span></span>
       </button>
     </div>
@@ -186,13 +180,13 @@
 
   <!-- ─── MOBILE MENU ─── -->
   <div class="mobile-menu" id="mobileMenu">
-    <a href="/about-us">About</a>
-    <a href="/#services">Services</a>
-    <a href="/other-food-projects">Projects</a>
-    <a href="/faq">FAQ</a>
-    <a href="/reviews">Reviews</a>
-    <a href="index-ar.html">العربية</a>
-    <a href="/contact-us" class="m-cta">Book Consultation</a>
+    <a href="../about-us/index-ar.html">عن سامر</a>
+    <a href="../index-ar.html#services">الخدمات</a>
+    <a href="../other-food-projects/index-ar.html">المشاريع</a>
+    <a href="../faq/index-ar.html">الأسئلة الشائعة</a>
+    <a href="../reviews/index-ar.html">التقييمات</a>
+    <a href="index.html">English</a>
+    <a href="index-ar.html" class="m-cta">احجز استشارة</a>
   </div>
 
   <!-- ─── PAGE HERO ─── -->
@@ -200,9 +194,9 @@
     <div class="page-hero-bg"></div>
     <div class="ph-stripe"></div>
     <div class="page-hero-inner">
-      <div class="ph-eyebrow">Contact</div>
-      <h1>Book a <em>Consultation</em></h1>
-      <p>Tell me about your food business challenge. I'll respond within 24–48 hours and we'll schedule a call at your convenience.</p>
+      <div class="ph-eyebrow">تواصل</div>
+      <h1>احجز <em>استشارة</em></h1>
+      <p>أخبرني عن تحدي عملك الغذائي. سأرد خلال 24-48 ساعة ونحدد موعداً للمكالمة في الوقت الذي يناسبك.</p>
     </div>
   </div>
 
@@ -210,83 +204,83 @@
   <div class="contact-wrap">
 
     <!-- ── FORM ── -->
-    <div class="form-section reveal-left">
-      <h2>Send a Request</h2>
-      <p class="subtitle">Fill out the form below and I'll get back to you as soon as possible. All fields marked with * are required.</p>
+    <div class="form-section reveal-right">
+      <h2>أرسل طلباً</h2>
+      <p class="subtitle">عبّئ النموذج أدناه وسأرد عليك في أقرب وقت ممكن. الحقول المعلّمة بـ * مطلوبة.</p>
 
       <form class="consult-form" action="https://formsubmit.co/samer@internationalfoodexperts.com" method="POST">
         <!-- FormSubmit hidden config -->
-        <input type="hidden" name="_subject" value="New Consultation Request — Samer Harb Website"/>
-        <input type="hidden" name="_next" value="https://samer-harb.vercel.app/contact-us/thank-you"/>
+        <input type="hidden" name="_subject" value="طلب استشارة جديد — موقع سامر حرب"/>
+        <input type="hidden" name="_next" value="https://samer-harb.vercel.app/contact-us/thank-you-ar"/>
         <input type="hidden" name="_captcha" value="false"/>
         <input type="hidden" name="_template" value="table"/>
         <input type="text" name="_honey" style="display:none"/>
 
         <div class="form-row">
           <div class="field">
-            <label for="name">Full Name *</label>
-            <input type="text" id="name" name="name" placeholder="Your full name" required/>
+            <label for="name">الاسم الكامل *</label>
+            <input type="text" id="name" name="name" placeholder="اسمك الكامل" required/>
           </div>
           <div class="field">
-            <label for="email">Email Address *</label>
+            <label for="email">البريد الإلكتروني *</label>
             <input type="email" id="email" name="email" placeholder="your@email.com" required/>
           </div>
         </div>
 
         <div class="form-row">
           <div class="field">
-            <label for="phone">Phone / WhatsApp</label>
+            <label for="phone">الهاتف / واتساب</label>
             <input type="tel" id="phone" name="phone" placeholder="+961 xx xxx xxx"/>
           </div>
           <div class="field">
-            <label for="company">Business / Company</label>
-            <input type="text" id="company" name="company" placeholder="Your company or brand name"/>
+            <label for="company">الشركة / العمل</label>
+            <input type="text" id="company" name="company" placeholder="اسم شركتك أو علامتك التجارية"/>
           </div>
         </div>
 
         <div class="field">
-          <label for="service">Service Required *</label>
+          <label for="service">الخدمة المطلوبة *</label>
           <select id="service" name="service" required>
-            <option value="" disabled selected>Select a service area…</option>
-            <option value="Food Projects Consultation">Food Projects Consultation</option>
-            <option value="Shelf Life & Quality Control">Shelf Life &amp; Quality Control</option>
-            <option value="Nutritional Facts & Labeling">Nutritional Facts &amp; Labeling</option>
-            <option value="Management Consulting">Management Consulting</option>
-            <option value="Supply Chain Consulting">Supply Chain Consulting</option>
-            <option value="Digital Transformation / ERP">Digital Transformation / ERP</option>
-            <option value="Risk Management">Risk Management</option>
-            <option value="Product Development">Product Development</option>
-            <option value="ISO 22000 Audits & Compliance">ISO 22000 Audits &amp; Compliance</option>
-            <option value="General Inquiry">General Inquiry / Not Sure Yet</option>
+            <option value="" disabled selected>اختر مجال الخدمة…</option>
+            <option value="Food Projects Consultation">استشارات مشاريع الغذاء</option>
+            <option value="Shelf Life & Quality Control">مدة الصلاحية ومراقبة الجودة</option>
+            <option value="Nutritional Facts & Labeling">الحقائق الغذائية والتسمية</option>
+            <option value="Management Consulting">الاستشارات الإدارية</option>
+            <option value="Supply Chain Consulting">استشارات سلسلة الإمداد</option>
+            <option value="Digital Transformation / ERP">التحول الرقمي / ERP</option>
+            <option value="Risk Management">إدارة المخاطر</option>
+            <option value="Product Development">تطوير المنتجات</option>
+            <option value="ISO 22000 Audits & Compliance">تدقيق وامتثال ISO 22000</option>
+            <option value="General Inquiry">استفسار عام / غير متأكد بعد</option>
           </select>
         </div>
 
         <div class="field">
-          <label for="country">Country / Region</label>
-          <input type="text" id="country" name="country" placeholder="e.g. Lebanon, Saudi Arabia, USA…"/>
+          <label for="country">البلد / المنطقة</label>
+          <input type="text" id="country" name="country" placeholder="مثل: لبنان، السعودية، الولايات المتحدة…"/>
         </div>
 
         <div class="field">
-          <label for="message">Tell Me About Your Challenge *</label>
-          <textarea id="message" name="message" placeholder="Describe your product, business, challenge, or what you need help with…" required></textarea>
+          <label for="message">أخبرني عن تحديك *</label>
+          <textarea id="message" name="message" placeholder="صف منتجك، عملك، تحديك، أو ما تحتاج المساعدة به…" required></textarea>
         </div>
 
-        <button type="submit" class="submit-btn">Send Request ↗</button>
-        <p class="form-note">By submitting this form you agree to be contacted regarding your inquiry. Your information will never be shared with third parties.</p>
+        <button type="submit" class="submit-btn">إرسال الطلب ↗</button>
+        <p class="form-note">بإرسال هذا النموذج، فإنك توافق على التواصل معك بخصوص استفسارك. لن تتم مشاركة معلوماتك مع أي طرف ثالث.</p>
       </form>
     </div>
 
     <!-- ── SIDEBAR ── -->
     <div class="contact-sidebar">
 
-      <div class="sidebar-card reveal-right">
-        <h3>Contact Info</h3>
+      <div class="sidebar-card reveal-left">
+        <h3>معلومات التواصل</h3>
         <div class="info-item">
           <div class="info-icon">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
           </div>
           <div>
-            <div class="info-text-label">Email</div>
+            <div class="info-text-label">البريد الإلكتروني</div>
             <a href="mailto:samer@internationalfoodexperts.com" class="info-text-val">samer@internationalfoodexperts.com</a>
           </div>
         </div>
@@ -295,8 +289,8 @@
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
           </div>
           <div>
-            <div class="info-text-label">Based In</div>
-            <span class="info-text-val">Beirut, Lebanon</span>
+            <div class="info-text-label">الموقع</div>
+            <span class="info-text-val">بيروت، لبنان</span>
           </div>
         </div>
         <div class="info-item">
@@ -304,37 +298,37 @@
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
           </div>
           <div>
-            <div class="info-text-label">Response Time</div>
-            <span class="info-text-val">Within 24–48 business hours</span>
+            <div class="info-text-label">زمن الرد</div>
+            <span class="info-text-val">خلال 24-48 ساعة عمل</span>
           </div>
         </div>
       </div>
 
-      <div class="sidebar-card reveal-right">
-        <h3>Office Hours</h3>
+      <div class="sidebar-card reveal-left">
+        <h3>ساعات العمل</h3>
         <div class="hours-grid">
-          <div class="hours-row"><span class="hours-day">Monday</span><span class="hours-time">9:00 AM – 5:00 PM</span></div>
-          <div class="hours-row"><span class="hours-day">Tuesday</span><span class="hours-time">9:00 AM – 5:00 PM</span></div>
-          <div class="hours-row"><span class="hours-day">Wednesday</span><span class="hours-time">9:00 AM – 5:00 PM</span></div>
-          <div class="hours-row"><span class="hours-day">Thursday</span><span class="hours-time">9:00 AM – 5:00 PM</span></div>
-          <div class="hours-row"><span class="hours-day">Friday</span><span class="hours-time closed">Closed</span></div>
-          <div class="hours-row"><span class="hours-day">Saturday</span><span class="hours-time closed">Closed</span></div>
-          <div class="hours-row"><span class="hours-day">Sunday</span><span class="hours-time">9:00 AM – 5:00 PM</span></div>
+          <div class="hours-row"><span class="hours-day">الإثنين</span><span class="hours-time">9:00 ص – 5:00 م</span></div>
+          <div class="hours-row"><span class="hours-day">الثلاثاء</span><span class="hours-time">9:00 ص – 5:00 م</span></div>
+          <div class="hours-row"><span class="hours-day">الأربعاء</span><span class="hours-time">9:00 ص – 5:00 م</span></div>
+          <div class="hours-row"><span class="hours-day">الخميس</span><span class="hours-time">9:00 ص – 5:00 م</span></div>
+          <div class="hours-row"><span class="hours-day">الجمعة</span><span class="hours-time closed">مغلق</span></div>
+          <div class="hours-row"><span class="hours-day">السبت</span><span class="hours-time closed">مغلق</span></div>
+          <div class="hours-row"><span class="hours-day">الأحد</span><span class="hours-time">9:00 ص – 5:00 م</span></div>
         </div>
       </div>
 
-      <div class="sidebar-card reveal-right">
-        <h3>Serving Across</h3>
+      <div class="sidebar-card reveal-left">
+        <h3>نخدم في</h3>
         <div class="loc-list">
-          <div class="loc-row"><span class="loc-dot"></span><span><span class="loc-country">Lebanon</span> — Domestic &amp; academic</span></div>
-          <div class="loc-row"><span class="loc-dot"></span><span><span class="loc-country">Saudi Arabia, Kuwait, Bahrain &amp; Iraq</span> — Large-scale compliance</span></div>
-          <div class="loc-row"><span class="loc-dot"></span><span><span class="loc-country">Egypt &amp; Turkey</span> — Supply chain &amp; ERP</span></div>
-          <div class="loc-row"><span class="loc-dot"></span><span><span class="loc-country">USA &amp; Canada</span> — Labeling &amp; launch</span></div>
+          <div class="loc-row"><span class="loc-dot"></span><span><span class="loc-country">لبنان</span> — السوق المحلي والإرشاد الأكاديمي</span></div>
+          <div class="loc-row"><span class="loc-dot"></span><span><span class="loc-country">السعودية، الكويت، البحرين والعراق</span> — امتثال المشاريع الكبرى</span></div>
+          <div class="loc-row"><span class="loc-dot"></span><span><span class="loc-country">مصر وتركيا</span> — سلسلة الإمداد وERP</span></div>
+          <div class="loc-row"><span class="loc-dot"></span><span><span class="loc-country">الولايات المتحدة وكندا</span> — التسمية والإطلاق</span></div>
         </div>
       </div>
 
-      <div class="sidebar-card reveal-right">
-        <h3>Follow &amp; Connect</h3>
+      <div class="sidebar-card reveal-left">
+        <h3>تابعنا وتواصل معنا</h3>
         <div class="social-row">
           <a class="soc-btn" href="https://www.facebook.com/Samerfoodconsultant/" target="_blank" title="Facebook">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
@@ -362,8 +356,8 @@
     <div class="footer-inner">
       <div class="footer-top">
         <div>
-          <div class="footer-brand-name">Samer Harb</div>
-          <div class="footer-brand-desc">Strategic Food Industry Consultant &amp; Certified Food Scientist. First Lebanese CFS. ISO 22000:2018 Lead Auditor (IRCA-UK). 25+ years across MENA.</div>
+          <div class="footer-brand-name">سامر حرب</div>
+          <div class="footer-brand-desc">مستشار استراتيجي في صناعة الغذاء وعالم أغذية معتمد. أول لبناني حاصل على شهادة CFS. مدقق رئيسي ISO 22000:2018 (IRCA-UK). أكثر من 25 عاماً حول العالم.</div>
           <div class="footer-social">
             <a href="https://www.facebook.com/Samerfoodconsultant/" target="_blank" title="Facebook"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
             <a href="https://www.instagram.com/internationalfoodexperts" target="_blank" title="Instagram"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
@@ -373,38 +367,38 @@
           </div>
         </div>
         <div class="footer-col">
-          <div class="footer-col-title">Services</div>
+          <div class="footer-col-title">الخدمات</div>
           <ul>
-            <li><a href="/#services">Food Projects</a></li>
-            <li><a href="/#services">Shelf Life &amp; QC</a></li>
-            <li><a href="/#services">Nutritional Labeling</a></li>
-            <li><a href="/#services">Supply Chain</a></li>
-            <li><a href="/#services">Product Development</a></li>
+            <li><a href="../index-ar.html#services">مشاريع الغذاء</a></li>
+            <li><a href="../index-ar.html#services">مدة الصلاحية والجودة</a></li>
+            <li><a href="../index-ar.html#services">التسمية الغذائية</a></li>
+            <li><a href="../index-ar.html#services">سلسلة الإمداد</a></li>
+            <li><a href="../index-ar.html#services">تطوير المنتجات</a></li>
           </ul>
         </div>
         <div class="footer-col">
-          <div class="footer-col-title">Pages</div>
+          <div class="footer-col-title">الصفحات</div>
           <ul>
-            <li><a href="/about-us">About Us</a></li>
-            <li><a href="/other-food-projects">Projects</a></li>
-            <li><a href="/reviews">Reviews</a></li>
-            <li><a href="/faq">FAQ</a></li>
+            <li><a href="../about-us/index-ar.html">عن سامر</a></li>
+            <li><a href="../other-food-projects/index-ar.html">المشاريع</a></li>
+            <li><a href="../reviews/index-ar.html">التقييمات</a></li>
+            <li><a href="../faq/index-ar.html">الأسئلة الشائعة</a></li>
           </ul>
         </div>
         <div class="footer-col">
-          <div class="footer-col-title">Contact</div>
+          <div class="footer-col-title">التواصل</div>
           <ul>
-            <li><a href="/contact-us">Book Consultation</a></li>
-            <li><a href="mailto:samer@internationalfoodexperts.com">Email Directly</a></li>
-            <li><a href="/#recognition">Media &amp; Press</a></li>
+            <li><a href="index-ar.html">احجز استشارة</a></li>
+            <li><a href="mailto:samer@internationalfoodexperts.com">راسلني مباشرة</a></li>
+            <li><a href="../index-ar.html#recognition">الإعلام والصحافة</a></li>
           </ul>
         </div>
       </div>
       <div class="footer-bottom">
-        <span class="footer-copy">© 2026 Samer Harb. All rights reserved.</span>
+        <span class="footer-copy">© 2026 سامر حرب. جميع الحقوق محفوظة.</span>
         <div class="footer-bottom-links">
-          <a href="/faq">FAQ</a>
-          <a href="/contact-us">Contact</a>
+          <a href="../faq/index-ar.html">الأسئلة الشائعة</a>
+          <a href="index-ar.html">التواصل</a>
         </div>
       </div>
     </div>
@@ -435,7 +429,6 @@
     gsap.utils.toArray('.reveal-left').forEach(el => { gsap.to(el, { opacity:1, x:0, duration:1, ease:'power3.out', scrollTrigger:{ trigger:el, start:'top 85%', once:true } }); });
     gsap.utils.toArray('.reveal-right').forEach(el => { gsap.to(el, { opacity:1, x:0, duration:1, ease:'power3.out', scrollTrigger:{ trigger:el, start:'top 85%', once:true } }); });
 
-    // Animate page hero on load
     gsap.from('.page-hero-inner', { opacity:0, y:30, duration:1, ease:'power3.out', delay:0.2 });
   </script>
 </body>

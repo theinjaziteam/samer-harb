@@ -35,6 +35,8 @@
     .nav-links a:hover,.nav-links a.active{color:var(--ink)}
     .nav-cta{font-size:13px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--white);background:var(--blue);border:none;padding:11px 24px;text-decoration:none;display:inline-block;transition:background .2s,transform .2s}
     .nav-cta:hover{background:var(--blue-dark);transform:translateY(-1px)}
+    .nav-lang{font-size:13px;font-weight:700;letter-spacing:.5px;color:var(--muted);text-decoration:none;transition:color .2s;margin-right:24px}
+    .nav-lang:hover{color:var(--blue)}
     .nav-hamburger{display:none;flex-direction:column;gap:5px;padding:8px;background:none;border:none;cursor:pointer;z-index:200}
     .nav-hamburger span{display:block;width:24px;height:2px;background:var(--ink);transition:transform .35s var(--ease-out),opacity .3s}
     .nav-hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
@@ -163,7 +165,7 @@
     /* ── RESPONSIVE ── */
     @media(max-width:900px){
       nav{padding:0 24px}
-      .nav-links,.nav-cta{display:none}
+      .nav-links,.nav-cta,.nav-lang{display:none}
       .nav-hamburger{display:flex}
       .mobile-menu{display:flex}
       .page-hero,.about-intro,.experience,.approach,.education,.cta-band{padding-left:24px;padding-right:24px}
@@ -199,6 +201,7 @@
         <li><a href="/faq">FAQ</a></li>
         <li><a href="/reviews">Reviews</a></li>
       </ul>
+      <a href="index-ar.html" class="nav-lang">ع</a>
       <a href="/contact-us" class="nav-cta">Book a Consultation</a>
       <button class="nav-hamburger" id="hamburger" aria-label="Open menu">
         <span></span><span></span><span></span>
@@ -213,6 +216,7 @@
     <a href="/other-food-projects">Projects</a>
     <a href="/faq">FAQ</a>
     <a href="/reviews">Reviews</a>
+    <a href="index-ar.html">العربية</a>
     <a href="/contact-us" class="m-cta">Book Consultation</a>
   </div>
 
