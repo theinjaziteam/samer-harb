@@ -38,6 +38,9 @@
     nav.scrolled .nav-links a:hover{color:var(--ink)}
     .nav-cta{font-size:13px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--white);background:var(--blue);border:none;padding:11px 24px;text-decoration:none;display:inline-block;transition:background .2s,transform .2s}
     .nav-cta:hover{background:var(--blue-dark);transform:translateY(-1px)}
+    .nav-lang{font-size:13px;font-weight:700;letter-spacing:.5px;color:rgba(255,255,255,0.6);text-decoration:none;transition:color .2s;cursor:pointer;background:none;border:none;font-family:inherit;margin-right:24px}
+    nav.scrolled .nav-lang{color:var(--muted)}
+    .nav-lang:hover{color:var(--blue)!important}
 
     /* ── HAMBURGER ── */
     .nav-hamburger{display:none;flex-direction:column;gap:5px;padding:8px;background:none;border:none;cursor:pointer;z-index:200}
@@ -207,7 +210,7 @@
     .lang-photo img{width:100%;height:100%;object-fit:cover;filter:brightness(0.95) saturate(1.05) contrast(1.02)}
     .lang-photo::after{content:'';position:absolute;inset:0;background:linear-gradient(to right,transparent 55%,#0c1117 100%)}
     .lang-content{position:relative;z-index:2;width:50%;height:100%;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;text-align:left;padding:0 5vw}
-    .lang-logo{width:104px;height:104px;border-radius:50%;object-fit:cover;border:3px solid rgba(28,105,212,0.7);margin-bottom:28px}
+    .lang-logo{width:auto;height:140px;max-width:280px;object-fit:contain;margin-bottom:28px}
     .lang-name{font-size:48px;font-weight:800;color:var(--white);letter-spacing:-.5px;margin-bottom:12px;line-height:1.1}
     .lang-role{font-size:17px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,0.7);margin-bottom:44px}
     .lang-divider{width:48px;height:2px;background:var(--blue);margin:0 0 32px}
@@ -225,6 +228,7 @@
       .lang-photo{width:100%;height:38vh}
       .lang-photo::after{background:linear-gradient(to bottom,transparent 45%,#0c1117 100%)}
       .lang-content{width:100%;height:62vh;align-items:center;text-align:center;padding:32px 24px}
+      .lang-logo{height:96px;margin-bottom:20px}
       .lang-name{font-size:34px}
       .lang-role{font-size:14px;margin-bottom:32px}
       .lang-divider{margin:0 auto 24px}
@@ -249,6 +253,7 @@
       nav{padding:0 24px}
       .nav-links{display:none}
       .nav-cta{display:none}
+      .nav-lang{display:none}
       .nav-hamburger{display:flex}
       .mobile-menu{display:flex}
       .hero-content{grid-template-columns:1fr;gap:24px;padding:0 24px}
@@ -294,7 +299,10 @@
         <li><a href="/faq">FAQ</a></li>
         <li><a href="/reviews">Reviews</a></li>
       </ul>
-      <a href="/contact-us" class="nav-cta">Book a Consultation</a>
+      <div style="display:flex;align-items:center">
+        <button class="nav-lang" onclick="switchLang()">ع</button>
+        <a href="/contact-us" class="nav-cta">Book a Consultation</a>
+      </div>
       <button class="nav-hamburger" id="hamburger" aria-label="Open menu">
         <span></span><span></span><span></span>
       </button>
@@ -308,6 +316,7 @@
     <a href="/other-food-projects">Projects</a>
     <a href="/faq">FAQ</a>
     <a href="/reviews">Reviews</a>
+    <a href="javascript:void(0)" onclick="switchLang()">العربية</a>
     <a href="/contact-us" class="m-cta">Book Consultation</a>
   </div>
 
@@ -327,10 +336,10 @@
         </h1>
       </div>
       <div class="hero-right">
-        <p class="hero-bio">Over 25 years of certified expertise across Lebanon, Saudi Arabia, Egypt, Kuwait, and Bahrain — from ISO compliance to product innovation.</p>
+        <p class="hero-bio">Over 25 years of certified expertise across Lebanon, Egypt, Turkey, Saudi Arabia, Kuwait, Bahrain, Iraq, the USA, and Canada — from ISO compliance to product innovation.</p>
         <div class="hero-stats">
           <div><div class="stat-val" data-count="25"><span>0</span>+</div><div class="stat-lbl">Years Experience</div></div>
-          <div><div class="stat-val" data-count="5"><span>0</span></div><div class="stat-lbl">MENA Countries</div></div>
+          <div><div class="stat-val" data-count="9"><span>0</span></div><div class="stat-lbl">Countries Served</div></div>
           <div><div class="stat-val" data-count="8"><span>0</span></div><div class="stat-lbl">Service Areas</div></div>
         </div>
       </div>
@@ -392,8 +401,8 @@
           <div class="cred-lbl">Years of Industry Experience</div>
         </div>
         <div class="cred-item">
-          <div class="cred-val counter-el" data-target="5">0</div>
-          <div class="cred-lbl">MENA Countries Served</div>
+          <div class="cred-val counter-el" data-target="9">0</div>
+          <div class="cred-lbl">Countries Served</div>
         </div>
         <div class="cred-item">
           <div class="cred-val counter-el" data-target="8">0</div>
@@ -597,9 +606,9 @@
         </div>
         <div class="cta-location-list">
           <div class="loc-item"><span class="loc-dot"></span><span><span class="loc-country">Lebanon</span> — Domestic market &amp; academic mentorship</span></div>
-          <div class="loc-item"><span class="loc-dot"></span><span><span class="loc-country">Saudi Arabia</span> — Large-scale project compliance</span></div>
-          <div class="loc-item"><span class="loc-dot"></span><span><span class="loc-country">Egypt · Kuwait · Bahrain</span> — Supply chain &amp; ERP</span></div>
-          <div class="loc-item"><span class="loc-dot"></span><span><span class="loc-country">North America</span> — International labeling &amp; launch</span></div>
+          <div class="loc-item"><span class="loc-dot"></span><span><span class="loc-country">Saudi Arabia · Kuwait · Bahrain · Iraq</span> — Large-scale project compliance</span></div>
+          <div class="loc-item"><span class="loc-dot"></span><span><span class="loc-country">Egypt · Turkey</span> — Supply chain &amp; ERP</span></div>
+          <div class="loc-item"><span class="loc-dot"></span><span><span class="loc-country">USA · Canada</span> — International labeling &amp; launch</span></div>
         </div>
       </div>
     </div>
@@ -780,6 +789,11 @@
       } else {
         setTimeout(() => { langOverlay.style.display = 'none'; }, 450);
       }
+    }
+
+    function switchLang() {
+      localStorage.setItem('sh_lang', 'ar');
+      window.location.href = 'index-ar.html';
     }
   </script>
 </body>

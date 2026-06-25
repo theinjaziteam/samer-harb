@@ -6,7 +6,7 @@
   <title>سامر حرب — مستشار استراتيجي في صناعة الغذاء</title>
   <link rel="icon" href="https://img1.wsimg.com/isteam/ip/444b8d38-19da-4b89-bf4c-bb2ec2c3c6d1/logo/a260a6c7-3ef4-40ab-bab9-99ee7f8ea3c9.jpeg"/>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;500;600;700;800;900&family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet"/>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
@@ -15,11 +15,11 @@
       --blue:#1c69d4; --blue-dark:#0653b6; --dark:#1a2129; --dark-2:#262e38;
       --ink:#262626; --body:#3c3c3c; --muted:#6b6b6b; --soft:#9a9a9a;
       --line:#e6e6e6; --white:#ffffff; --off:#f7f7f7; --card:#fafafa;
-      --font:'Cairo',system-ui,sans-serif; --ease-out:cubic-bezier(0.16,1,0.3,1);
+      --font:'Noto Sans Arabic','Cairo',system-ui,sans-serif; --ease-out:cubic-bezier(0.16,1,0.3,1);
     }
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     html{scroll-behavior:auto}
-    body{font-family:var(--font);color:var(--body);background:var(--white);overflow-x:hidden;direction:rtl}
+    body{font-family:var(--font);color:var(--body);background:var(--white);overflow-x:hidden;direction:rtl;font-size:16px;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
 
     /* ── NAV ── */
     nav{position:fixed;top:0;left:0;right:0;z-index:100;height:64px;display:flex;align-items:center;padding:0 48px;background:transparent;transition:background .4s,box-shadow .4s}
@@ -31,7 +31,7 @@
     .nav-name{font-size:16px;font-weight:700;letter-spacing:.2px;color:var(--white);transition:color .3s}
     nav.scrolled .nav-name{color:var(--ink)}
     .nav-links{display:flex;gap:28px;list-style:none;flex-direction:row-reverse}
-    .nav-links a{font-size:14px;font-weight:400;color:rgba(255,255,255,0.8);text-decoration:none;transition:color .2s;position:relative}
+    .nav-links a{font-size:15px;font-weight:500;color:rgba(255,255,255,0.85);text-decoration:none;transition:color .2s;position:relative}
     .nav-links a::after{content:'';position:absolute;bottom:-2px;right:0;left:100%;height:1px;background:var(--blue);transition:left .3s var(--ease-out)}
     .nav-links a:hover::after{left:0}
     nav.scrolled .nav-links a{color:var(--muted)}
@@ -68,11 +68,11 @@
     .hero-h1 .word{display:inline-block;transform:translateY(110%)}
     .hero-h1 em{color:var(--blue);font-style:normal}
     .hero-right{display:flex;flex-direction:column;justify-content:flex-end;gap:20px;opacity:0}
-    .hero-bio{font-size:16px;font-weight:300;line-height:1.8;color:rgba(255,255,255,0.75);max-width:380px;text-align:right}
+    .hero-bio{font-size:18px;font-weight:400;line-height:1.85;color:rgba(255,255,255,0.85);max-width:400px;text-align:right}
     .hero-stats{display:flex;gap:32px;padding-top:20px;border-top:1px solid rgba(255,255,255,0.12);justify-content:flex-end}
     .stat-val{font-size:36px;font-weight:700;line-height:1;color:var(--white);text-align:center}
     .stat-val span{color:var(--blue)}
-    .stat-lbl{font-size:11px;font-weight:400;letter-spacing:.5px;color:rgba(255,255,255,0.45);margin-top:4px;text-align:center}
+    .stat-lbl{font-size:13px;font-weight:500;letter-spacing:.3px;color:rgba(255,255,255,0.6);margin-top:6px;text-align:center}
 
     /* ── M STRIPE ── */
     .m-stripe{height:4px;background:linear-gradient(90deg,#e22718 0%,#1c69d4 50%,#0066b1 100%)}
@@ -80,7 +80,7 @@
     /* ── TICKER ── */
     .ticker{background:var(--white);border-bottom:1px solid var(--line);padding:14px 0;overflow:hidden}
     .ticker-track{display:flex;gap:64px;white-space:nowrap;animation:tickerScroll 28s linear infinite}
-    .ticker-item{display:flex;align-items:center;gap:10px;font-size:13px;font-weight:700;color:var(--muted);flex-shrink:0}
+    .ticker-item{display:flex;align-items:center;gap:10px;font-size:14px;font-weight:600;color:var(--muted);flex-shrink:0}
     .ticker-dot{width:5px;height:5px;border-radius:50%;background:var(--blue);flex-shrink:0}
     @keyframes tickerScroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 
@@ -91,17 +91,17 @@
     .about-photo-cell img{width:100%;height:100%;object-fit:cover;object-position:top;display:block;min-height:580px}
     .about-photo-overlay{position:absolute;bottom:0;left:0;right:0;padding:32px;background:linear-gradient(to top,rgba(26,33,41,0.9),transparent)}
     .about-photo-name{font-size:24px;font-weight:700;color:var(--white)}
-    .about-photo-title{font-size:13px;font-weight:300;letter-spacing:.3px;color:rgba(255,255,255,0.6);margin-top:4px}
+    .about-photo-title{font-size:15px;font-weight:500;letter-spacing:.2px;color:rgba(255,255,255,0.75);margin-top:4px}
     .about-bio-cell{background:var(--dark);padding:48px;display:flex;flex-direction:column;justify-content:space-between}
-    .section-eyebrow{font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--blue);margin-bottom:20px}
+    .section-eyebrow{font-size:13px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--blue);margin-bottom:20px}
     .about-bio-cell h2{font-size:clamp(26px,2.8vw,38px);font-weight:700;line-height:1.2;color:var(--white);margin-bottom:20px}
-    .about-bio-cell p{font-size:16px;font-weight:300;line-height:1.8;color:rgba(255,255,255,0.65)}
+    .about-bio-cell p{font-size:18px;font-weight:400;line-height:1.85;color:rgba(255,255,255,0.75)}
     .about-cred-cell{background:var(--off);padding:40px 48px;display:grid;grid-template-columns:repeat(3,1fr);gap:32px;align-items:center}
     .cred-val{font-size:32px;font-weight:700;color:var(--ink);line-height:1;text-align:center}
     .cred-val em{color:var(--blue);font-style:normal;font-size:20px}
-    .cred-lbl{font-size:12px;font-weight:400;letter-spacing:.3px;color:var(--muted);margin-top:6px;text-align:center}
+    .cred-lbl{font-size:14px;font-weight:500;letter-spacing:.2px;color:var(--muted);margin-top:6px;text-align:center}
     .certs-row{border-top:1px solid rgba(255,255,255,0.1);padding:16px 0 0;display:flex;align-items:center;gap:24px;flex-wrap:wrap;flex-direction:row-reverse}
-    .certs-label{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--soft);flex-shrink:0}
+    .certs-label{font-size:13px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--soft);flex-shrink:0}
     .cert-logo-img{height:36px;width:auto;object-fit:contain;filter:grayscale(1) opacity(0.5);transition:filter .3s}
     .cert-logo-img:hover{filter:grayscale(0) opacity(1)}
     a.cert-link{display:inline-flex}
@@ -114,10 +114,10 @@
     .services-list{max-width:1340px;margin:0 auto}
     .svc-item{display:grid;grid-template-columns:120px 1fr 200px 40px;align-items:center;gap:32px;padding:28px 0;border-top:1px solid var(--line);transition:background .2s}
     .svc-item:last-child{border-bottom:1px solid var(--line)}
-    .svc-num{font-size:13px;font-weight:700;letter-spacing:1.5px;color:var(--soft);text-align:right}
-    .svc-title{font-size:20px;font-weight:700;color:var(--ink);transition:color .2s}
+    .svc-num{font-size:14px;font-weight:700;letter-spacing:1px;color:var(--soft);text-align:right}
+    .svc-title{font-size:21px;font-weight:700;color:var(--ink);transition:color .2s}
     .svc-item:hover .svc-title{color:var(--blue)}
-    .svc-desc{font-size:14px;font-weight:300;line-height:1.6;color:var(--muted)}
+    .svc-desc{font-size:15px;font-weight:400;line-height:1.7;color:var(--muted)}
     .svc-arrow{font-size:22px;color:var(--blue);text-align:left;opacity:0;transform:translateX(8px);transition:opacity .2s,transform .3s var(--ease-out)}
     .svc-item:hover .svc-arrow{opacity:1;transform:translateX(0)}
 
@@ -136,10 +136,10 @@
     .p-card img{width:100%;height:100%;object-fit:cover;transition:transform .7s var(--ease-out);display:block}
     .p-card:hover img{transform:scale(1.04)}
     .p-card-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(26,33,41,0.92) 0%,rgba(26,33,41,0.0) 55%);display:flex;flex-direction:column;justify-content:flex-end;padding:28px;text-align:right}
-    .p-tag{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--blue);margin-bottom:8px}
-    .p-title{font-size:20px;font-weight:700;color:var(--white)}
-    .p-desc{font-size:13px;font-weight:300;color:rgba(255,255,255,0.6);margin-top:6px;line-height:1.6}
-    .p-link-hint{font-size:11px;font-weight:700;letter-spacing:.5px;color:rgba(255,255,255,0);margin-top:12px;transition:color .3s;display:inline-flex;align-items:center;gap:6px}
+    .p-tag{font-size:12px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--blue);margin-bottom:8px}
+    .p-title{font-size:21px;font-weight:700;color:var(--white)}
+    .p-desc{font-size:14px;font-weight:400;color:rgba(255,255,255,0.7);margin-top:6px;line-height:1.65}
+    .p-link-hint{font-size:12px;font-weight:700;letter-spacing:.3px;color:rgba(255,255,255,0);margin-top:12px;transition:color .3s;display:inline-flex;align-items:center;gap:6px}
     .p-card:hover .p-link-hint{color:rgba(255,255,255,0.6)}
 
     /* ── MEDIA ── */
@@ -151,15 +151,15 @@
     .media-card img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease-out);display:block}
     .media-card:hover img{transform:scale(1.05)}
     .media-card-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(26,33,41,0.92) 0%,rgba(26,33,41,0.15) 55%,transparent 100%);display:flex;flex-direction:column;justify-content:flex-end;padding:22px;text-align:right}
-    .mc-outlet{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--blue);margin-bottom:4px}
-    .mc-title{font-size:14px;font-weight:700;color:var(--white);line-height:1.3}
-    .mc-type{font-size:11px;font-weight:300;color:rgba(255,255,255,0.5);margin-top:3px}
+    .mc-outlet{font-size:12px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--blue);margin-bottom:4px}
+    .mc-title{font-size:15px;font-weight:700;color:var(--white);line-height:1.35}
+    .mc-type{font-size:12px;font-weight:500;color:rgba(255,255,255,0.6);margin-top:3px}
     .mc-arrow{font-size:12px;color:rgba(255,255,255,0);margin-top:8px;transition:color .3s;font-weight:700}
     .media-card:hover .mc-arrow{color:rgba(255,255,255,0.6)}
 
     /* ── MEMBERSHIPS ── */
     .memberships{margin-top:60px}
-    .memberships h3{font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--soft);margin-bottom:24px}
+    .memberships h3{font-size:13px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--soft);margin-bottom:24px}
     .membership-logos{display:flex;gap:36px;align-items:center;flex-wrap:wrap;flex-direction:row-reverse}
     .m-logo-img{height:52px;width:auto;object-fit:contain;filter:grayscale(1) opacity(0.45);transition:filter .35s var(--ease-out),transform .35s var(--ease-out)}
     .m-logo-img:hover{filter:grayscale(0) opacity(1);transform:scale(1.06)}
@@ -171,7 +171,7 @@
     .cta-inner h2{font-size:clamp(34px,4.5vw,66px);font-weight:700;line-height:1.1;color:var(--white)}
     .cta-inner h2 em{color:var(--blue);font-style:normal}
     .cta-right-content{display:flex;flex-direction:column;gap:32px}
-    .cta-inner p{font-size:17px;font-weight:300;line-height:1.8;color:rgba(255,255,255,0.6)}
+    .cta-inner p{font-size:18px;font-weight:400;line-height:1.85;color:rgba(255,255,255,0.7)}
     .cta-btns{display:flex;gap:16px;flex-direction:row-reverse}
     .btn-primary{display:inline-flex;align-items:center;gap:10px;font-size:13px;font-weight:700;letter-spacing:.5px;color:var(--white);background:var(--blue);padding:16px 32px;text-decoration:none;border:none;transition:background .2s,transform .25s var(--ease-out);position:relative;overflow:hidden;cursor:pointer;font-family:var(--font)}
     .btn-primary::after{content:'';position:absolute;inset:0;background:rgba(255,255,255,0.08);transform:translateX(100%) skewX(15deg);transition:transform .4s var(--ease-out)}
@@ -180,7 +180,7 @@
     .btn-ghost{display:inline-flex;align-items:center;gap:10px;font-size:13px;font-weight:700;letter-spacing:.5px;color:rgba(255,255,255,0.7);border:1px solid rgba(255,255,255,0.2);padding:16px 32px;text-decoration:none;transition:border-color .2s,color .2s,transform .25s var(--ease-out);font-family:var(--font)}
     .btn-ghost:hover{border-color:rgba(255,255,255,0.6);color:var(--white);transform:translateY(-2px)}
     .cta-location-list{display:flex;flex-direction:column;gap:8px}
-    .loc-item{display:flex;align-items:center;gap:12px;font-size:14px;font-weight:300;color:rgba(255,255,255,0.5);flex-direction:row-reverse}
+    .loc-item{display:flex;align-items:center;gap:12px;font-size:15px;font-weight:400;color:rgba(255,255,255,0.65);flex-direction:row-reverse}
     .loc-dot{width:6px;height:6px;border-radius:50%;background:var(--blue);flex-shrink:0}
     .loc-country{font-weight:700;color:rgba(255,255,255,0.8)}
 
@@ -189,18 +189,18 @@
     .footer-inner{max-width:1340px;margin:0 auto}
     .footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;padding-bottom:48px;border-bottom:1px solid var(--line)}
     .footer-brand-name{font-size:17px;font-weight:700;color:var(--ink);margin-bottom:6px}
-    .footer-brand-desc{font-size:14px;font-weight:300;color:var(--muted);line-height:1.8;max-width:300px;margin-bottom:24px}
+    .footer-brand-desc{font-size:15px;font-weight:400;color:var(--muted);line-height:1.85;max-width:300px;margin-bottom:24px}
     .footer-social{display:flex;gap:12px;flex-direction:row-reverse}
     .footer-social a{width:36px;height:36px;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:14px;color:var(--muted);text-decoration:none;transition:border-color .2s,color .2s,background .2s}
     .footer-social a:hover{border-color:var(--blue);color:var(--blue);background:rgba(28,105,212,0.05)}
-    .footer-col-title{font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--ink);margin-bottom:20px}
+    .footer-col-title{font-size:13px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--ink);margin-bottom:20px}
     .footer-col ul{list-style:none;display:flex;flex-direction:column;gap:10px}
-    .footer-col a{font-size:14px;font-weight:300;color:var(--muted);text-decoration:none;transition:color .2s}
+    .footer-col a{font-size:15px;font-weight:400;color:var(--muted);text-decoration:none;transition:color .2s}
     .footer-col a:hover{color:var(--blue)}
     .footer-bottom{display:flex;align-items:center;justify-content:space-between;padding-top:24px;flex-direction:row-reverse}
-    .footer-copy{font-size:12px;color:var(--soft)}
+    .footer-copy{font-size:13px;color:var(--soft)}
     .footer-bottom-links{display:flex;gap:24px;flex-direction:row-reverse}
-    .footer-bottom-links a{font-size:12px;color:var(--soft);text-decoration:none;transition:color .2s}
+    .footer-bottom-links a{font-size:13px;color:var(--soft);text-decoration:none;transition:color .2s}
     .footer-bottom-links a:hover{color:var(--blue)}
 
     /* ── REVEALS ── */
@@ -283,6 +283,7 @@
     <a href="other-food-projects/index-ar.html">المشاريع</a>
     <a href="faq/index-ar.html">الأسئلة الشائعة</a>
     <a href="reviews/index-ar.html">التقييمات</a>
+    <a href="javascript:void(0)" onclick="switchLang()">English</a>
     <a href="contact-us/index-ar.html" class="m-cta">احجز استشارة</a>
   </div>
 
@@ -303,10 +304,10 @@
         </h1>
       </div>
       <div class="hero-right">
-        <p class="hero-bio">أكثر من 25 عاماً من الخبرة المعتمدة في لبنان، المملكة العربية السعودية، مصر، الكويت والبحرين — من الامتثال لمعايير ISO إلى ابتكار المنتجات الغذائية.</p>
+        <p class="hero-bio">أكثر من 25 عاماً من الخبرة المعتمدة في لبنان، مصر، تركيا، المملكة العربية السعودية، الكويت، البحرين، العراق، الولايات المتحدة الأمريكية وكندا — من الامتثال لمعايير ISO إلى ابتكار المنتجات الغذائية.</p>
         <div class="hero-stats">
           <div><div class="stat-val" data-count="25"><span>0</span>+</div><div class="stat-lbl">سنة خبرة</div></div>
-          <div><div class="stat-val" data-count="5"><span>0</span></div><div class="stat-lbl">دول في المنطقة</div></div>
+          <div><div class="stat-val" data-count="9"><span>0</span></div><div class="stat-lbl">دول حول العالم</div></div>
           <div><div class="stat-val" data-count="8"><span>0</span></div><div class="stat-lbl">مجالات استشارية</div></div>
         </div>
       </div>
@@ -368,8 +369,8 @@
           <div class="cred-lbl">سنة في صناعة الغذاء</div>
         </div>
         <div class="cred-item">
-          <div class="cred-val counter-el" data-target="5">0</div>
-          <div class="cred-lbl">دول في المنطقة</div>
+          <div class="cred-val counter-el" data-target="9">0</div>
+          <div class="cred-lbl">دول حول العالم</div>
         </div>
         <div class="cred-item">
           <div class="cred-val counter-el" data-target="8">0</div>
@@ -572,9 +573,9 @@
         </div>
         <div class="cta-location-list">
           <div class="loc-item"><span class="loc-dot"></span><span><span class="loc-country">لبنان</span> — السوق المحلي والإرشاد الأكاديمي</span></div>
-          <div class="loc-item"><span class="loc-dot"></span><span><span class="loc-country">المملكة العربية السعودية</span> — امتثال المشاريع الكبرى</span></div>
-          <div class="loc-item"><span class="loc-dot"></span><span><span class="loc-country">مصر · الكويت · البحرين</span> — سلسلة الإمداد وERP</span></div>
-          <div class="loc-item"><span class="loc-dot"></span><span><span class="loc-country">أمريكا الشمالية</span> — التسمية الدولية والإطلاق</span></div>
+          <div class="loc-item"><span class="loc-dot"></span><span><span class="loc-country">المملكة العربية السعودية · الكويت · البحرين · العراق</span> — امتثال المشاريع الكبرى</span></div>
+          <div class="loc-item"><span class="loc-dot"></span><span><span class="loc-country">مصر · تركيا</span> — سلسلة الإمداد وERP</span></div>
+          <div class="loc-item"><span class="loc-dot"></span><span><span class="loc-country">الولايات المتحدة الأمريكية · كندا</span> — التسمية الدولية والإطلاق</span></div>
         </div>
       </div>
     </div>
