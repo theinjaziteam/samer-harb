@@ -129,10 +129,9 @@
     .link-light:hover{color:var(--white)}
     .link-light::before{content:'←';transition:transform .3s}
     .link-light:hover::before{transform:translateX(-4px)}
-    .portfolio-bento{max-width:1340px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr 1fr;grid-template-rows:360px 260px;gap:3px}
+    .portfolio-bento{max-width:1340px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:3px}
     a.p-card{display:block;text-decoration:none}
-    .p-card{position:relative;overflow:hidden;background:var(--dark-2)}
-    .p-card:first-child{grid-column:2/4}
+    .p-card{position:relative;overflow:hidden;background:var(--dark-2);height:300px}
     .p-card img{width:100%;height:100%;object-fit:cover;transition:transform .7s var(--ease-out);display:block}
     .p-card:hover img{transform:scale(1.04)}
     .p-card-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(26,33,41,0.92) 0%,rgba(26,33,41,0.0) 55%);display:flex;flex-direction:column;justify-content:flex-end;padding:28px;text-align:right}
@@ -214,7 +213,7 @@
       .about-grid{grid-template-columns:1fr}
       .about-photo-cell{grid-row:auto}
       .about-photo-cell img{min-height:420px;max-height:480px;width:100%}
-      .portfolio-bento{grid-template-rows:280px 220px}
+      .portfolio-bento{grid-template-columns:repeat(3,1fr)}
     }
     @media(max-width:900px){
       nav{padding:0 24px}
@@ -228,9 +227,8 @@
       .about,.services,.portfolio,.media-section,.cta-section{padding-left:24px;padding-right:24px}
       footer{padding-left:24px;padding-right:24px}
       .about-cred-cell{grid-template-columns:1fr 1fr}
-      .portfolio-bento{grid-template-columns:1fr;grid-template-rows:auto}
-      .p-card:first-child{grid-column:1}
-      .p-card{height:280px}
+      .portfolio-bento{grid-template-columns:repeat(2,1fr)}
+      .p-card{height:220px}
       .services-header,.portfolio-header{flex-direction:column;align-items:flex-start;gap:16px}
       .svc-item{grid-template-columns:64px 1fr;gap:16px}
       .svc-desc,.svc-arrow{display:none}
@@ -243,6 +241,7 @@
       .hero-h1{font-size:24px}
       .hero-stats{gap:20px}
       .stat-val{font-size:28px}
+      .portfolio-bento{grid-template-columns:1fr}
       .media-cards{grid-template-columns:1fr}
       .media-cards a:last-child{grid-column:1}
       .footer-top{grid-template-columns:1fr}
@@ -415,16 +414,6 @@
     </div>
     <div class="portfolio-bento">
 
-      <a class="p-card reveal-scale" href="https://www.instagram.com/yaza.foods?igsh=MXB6d3RjY29sNXZ2ZQ==" target="_blank" rel="noopener">
-        <img src="images/yaza.jpeg" alt="يازا لبنة"/>
-        <div class="p-card-overlay">
-          <div class="p-tag">تطوير منتج · الولايات المتحدة</div>
-          <div class="p-title">يازا لبنة</div>
-          <div class="p-desc">علامة تجارية لبنانية مميزة لمنتجات الألبان، صُممت وسُمِّيت للسوق الأمريكية.</div>
-          <div class="p-link-hint">عرض على إنستغرام ←</div>
-        </div>
-      </a>
-
       <a class="p-card reveal-scale" href="https://www.instagram.com/p/C6QzDLmvj0s/?igsh=c2Y4cXcwNHMydHVq" target="_blank" rel="noopener">
         <img src="images/rifai.jpeg" alt="كبسولات قهوة الرفاعي"/>
         <div class="p-card-overlay">
@@ -435,33 +424,113 @@
         </div>
       </a>
 
-      <a class="p-card reveal-scale" href="https://youtu.be/2JLbpQFriFM" target="_blank" rel="noopener">
-        <img src="https://img1.wsimg.com/isteam/ip/444b8d38-19da-4b89-bf4c-bb2ec2c3c6d1/b77be0da-0fdf-49a3-851d-7fa8cebc8adb.jpg" alt="تدقيق ISO 22000"/>
+      <a class="p-card reveal-scale" href="https://www.instagram.com/yaza.foods?igsh=MXB6d3RjY29sNXZ2ZQ==" target="_blank" rel="noopener">
+        <img src="images/yaza.jpeg" alt="يازا لبنة"/>
         <div class="p-card-overlay">
-          <div class="p-tag">الامتثال · المنطقة</div>
-          <div class="p-title">تدقيق ISO 22000:2018</div>
-          <div class="p-desc">عمليات تدقيق رئيسية معتمدة من IRCA في لبنان والسعودية ودول الخليج.</div>
-          <div class="p-link-hint">مشاهدة المقابلة ←</div>
+          <div class="p-tag">تطوير منتج · الولايات المتحدة</div>
+          <div class="p-title">يازا لبنة</div>
+          <div class="p-desc">علامة تجارية لبنانية مميزة لمنتجات الألبان، صُممت وسُمِّيت للسوق الأمريكية.</div>
+          <div class="p-link-hint">عرض على إنستغرام ←</div>
         </div>
       </a>
 
       <a class="p-card reveal-scale" href="other-food-projects/index-ar.html">
-        <img src="https://img1.wsimg.com/isteam/ip/444b8d38-19da-4b89-bf4c-bb2ec2c3c6d1/food-food-processing-industry-koks-robotics-c.WebP" alt="مشاريع غذائية في المنطقة"/>
+        <img src="images/nuts-and-coffee.jpeg" alt="مكسرات وقهوة"/>
         <div class="p-card-overlay">
-          <div class="p-tag">استشارات · إقليمية</div>
-          <div class="p-title">مشاريع الغذاء في المنطقة</div>
-          <div class="p-desc">استشارات شاملة لمنشآت الغذاء الجديدة وتخطيط خطوط الإنتاج.</div>
-          <div class="p-link-hint">عرض جميع المشاريع ←</div>
+          <div class="p-tag">تطوير منتج · الخليج</div>
+          <div class="p-title">مكسرات وقهوة</div>
+          <div class="p-desc">خطوط هدايا مكسرات وقهوة فاخرة طُوِّرت لسوق التجزئة الخليجي.</div>
+          <div class="p-link-hint">عرض المشروع ←</div>
         </div>
       </a>
 
-      <a class="p-card reveal-scale" href="https://www.aub.edu.lb/fafs/news/Pages/2019_Samer-Harb-CFS-Certification.aspx" target="_blank" rel="noopener">
-        <img src="https://img1.wsimg.com/isteam/stock/19540/:/cr=t:0%25,l:0%25,w:66.67%25,h:100%25/rs=w:500,h:500,cg:true" alt="تمديد مدة الصلاحية"/>
+      <a class="p-card reveal-scale" href="other-food-projects/index-ar.html">
+        <img src="images/distilled-export.jpg" alt="منتجات مقطرة للتصدير"/>
         <div class="p-card-overlay">
-          <div class="p-tag">الجودة · البحث والتطوير</div>
-          <div class="p-title">تمديد مدة الصلاحية</div>
-          <div class="p-desc">علم الغذاء التطبيقي لتعظيم العمر الافتراضي للمنتجات دون مساس بالجودة.</div>
-          <div class="p-link-hint">قراءة مقال AUB ←</div>
+          <div class="p-tag">تصدير · إنتاج</div>
+          <div class="p-title">منتجات مقطرة للتصدير</div>
+          <div class="p-desc">تصميم العمليات والامتثال لخطوط المشروبات المقطرة المُصنَّعة للتصدير الدولي.</div>
+          <div class="p-link-hint">عرض المشروع ←</div>
+        </div>
+      </a>
+
+      <a class="p-card reveal-scale" href="other-food-projects/index-ar.html">
+        <img src="images/bakery-pastry.jpg" alt="مخبوزات ومعجنات طازجة ومجمدة"/>
+        <div class="p-card-overlay">
+          <div class="p-tag">مخابز · معجنات</div>
+          <div class="p-title">مخبوزات ومعجنات طازجة ومجمدة</div>
+          <div class="p-desc">تخطيط خطوط إنتاج لعمليات المخبوزات والمعجنات الطازجة والمجمدة.</div>
+          <div class="p-link-hint">عرض المشروع ←</div>
+        </div>
+      </a>
+
+      <a class="p-card reveal-scale" href="other-food-projects/index-ar.html">
+        <img src="images/central-kitchen-catering.jpg" alt="المطبخ المركزي للتموين والأطعمة الفاخرة"/>
+        <div class="p-card-overlay">
+          <div class="p-tag">تموين · أطعمة فاخرة</div>
+          <div class="p-title">المطبخ المركزي للتموين</div>
+          <div class="p-desc">تصميم المطبخ المركزي وهندسة سير العمل لخدمات التموين الكبرى والأطعمة الفاخرة.</div>
+          <div class="p-link-hint">عرض المشروع ←</div>
+        </div>
+      </a>
+
+      <a class="p-card reveal-scale" href="other-food-projects/index-ar.html">
+        <img src="images/avocado-frozen.jpg" alt="أفوكادو مجمد"/>
+        <div class="p-card-overlay">
+          <div class="p-tag">مجمدات · تطوير منتج</div>
+          <div class="p-title">أفوكادو مجمد</div>
+          <div class="p-desc">تطوير منتج أفوكادو مجمد طويل الصلاحية من المعالجة حتى التعبئة.</div>
+          <div class="p-link-hint">عرض المشروع ←</div>
+        </div>
+      </a>
+
+      <a class="p-card reveal-scale" href="other-food-projects/index-ar.html">
+        <img src="images/almond-milk.jpg" alt="حليب اللوز"/>
+        <div class="p-card-overlay">
+          <div class="p-tag">تطوير منتج · بديل ألبان</div>
+          <div class="p-title">حليب اللوز</div>
+          <div class="p-desc">تركيب وتحسين مدة الصلاحية لخط حليب لوز نباتي.</div>
+          <div class="p-link-hint">عرض المشروع ←</div>
+        </div>
+      </a>
+
+      <a class="p-card reveal-scale" href="other-food-projects/index-ar.html">
+        <img src="images/swiss-roll.jpg" alt="مصنع السويس رول"/>
+        <div class="p-card-overlay">
+          <div class="p-tag">خط إنتاج · مخابز</div>
+          <div class="p-title">مصنع السويس رول</div>
+          <div class="p-desc">تصميم منشأة كامل وتخطيط آلات لخط إنتاج صناعي للسويس رول.</div>
+          <div class="p-link-hint">عرض المشروع ←</div>
+        </div>
+      </a>
+
+      <a class="p-card reveal-scale" href="other-food-projects/index-ar.html">
+        <img src="images/energy-drinks.jpg" alt="مشروبات طاقة صحية"/>
+        <div class="p-card-overlay">
+          <div class="p-tag">ابتكار · مشروبات</div>
+          <div class="p-title">مشروبات طاقة صحية</div>
+          <div class="p-desc">تركيب مشروبات طاقة وظيفية من مكونات صحية نقية.</div>
+          <div class="p-link-hint">عرض المشروع ←</div>
+        </div>
+      </a>
+
+      <a class="p-card reveal-scale" href="other-food-projects/index-ar.html">
+        <img src="images/power-drinks.jpg" alt="مشروبات للبشرة وطول العمر"/>
+        <div class="p-card-overlay">
+          <div class="p-tag">العافية · مشروبات</div>
+          <div class="p-title">مشروبات للبشرة وطول العمر</div>
+          <div class="p-desc">تطوير مشروبات وظيفية تستهدف صحة البشرة وطول العمر.</div>
+          <div class="p-link-hint">عرض المشروع ←</div>
+        </div>
+      </a>
+
+      <a class="p-card reveal-scale" href="other-food-projects/index-ar.html">
+        <img src="images/healthy-diet-food.jpg" alt="مشروع أغذية صحية ودايت"/>
+        <div class="p-card-overlay">
+          <div class="p-tag">تغذية · دايت</div>
+          <div class="p-title">مشروع أغذية صحية ودايت</div>
+          <div class="p-desc">تطوير منتجات غذائية لخط أغذية صحي يركز على الحمية.</div>
+          <div class="p-link-hint">عرض المشروع ←</div>
         </div>
       </a>
 
