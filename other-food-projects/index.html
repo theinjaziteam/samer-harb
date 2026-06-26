@@ -35,6 +35,8 @@
     .nav-links a:hover,.nav-links a.active{color:var(--ink)}
     .nav-cta{font-size:13px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--white);background:var(--blue);border:none;padding:11px 24px;text-decoration:none;display:inline-block;transition:background .2s,transform .2s}
     .nav-cta:hover{background:var(--blue-dark);transform:translateY(-1px)}
+    .nav-lang{font-size:13px;font-weight:700;letter-spacing:.5px;color:var(--muted);text-decoration:none;transition:color .2s;margin-right:24px}
+    .nav-lang:hover{color:var(--blue)}
     .nav-hamburger{display:none;flex-direction:column;gap:5px;padding:8px;background:none;border:none;cursor:pointer;z-index:200}
     .nav-hamburger span{display:block;width:24px;height:2px;background:var(--ink);transition:transform .35s var(--ease-out),opacity .3s}
     .nav-hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
@@ -144,7 +146,7 @@
 
     @media(max-width:900px){
       nav{padding:0 24px}
-      .nav-links,.nav-cta{display:none}
+      .nav-links,.nav-cta,.nav-lang{display:none}
       .nav-hamburger{display:flex}
       .mobile-menu{display:flex}
       .page-hero,.projects-section,.featured-section,.cta-band{padding-left:24px;padding-right:24px}
@@ -179,6 +181,7 @@
         <li><a href="/faq">FAQ</a></li>
         <li><a href="/reviews">Reviews</a></li>
       </ul>
+      <a href="index-ar.html" class="nav-lang">ع</a>
       <a href="/contact-us" class="nav-cta">Book a Consultation</a>
       <button class="nav-hamburger" id="hamburger" aria-label="Open menu">
         <span></span><span></span><span></span>
@@ -193,6 +196,7 @@
     <a href="/other-food-projects">Projects</a>
     <a href="/faq">FAQ</a>
     <a href="/reviews">Reviews</a>
+    <a href="index-ar.html">العربية</a>
     <a href="/contact-us" class="m-cta">Book Consultation</a>
   </div>
 
@@ -221,7 +225,7 @@
       <h2 style="font-size:clamp(24px,3vw,40px);font-weight:700;color:var(--ink);margin-bottom:40px;line-height:1.1">Flagship <span style="color:var(--blue)">Projects</span></h2>
       <div class="featured-grid">
         <a class="feat-card reveal-scale" href="https://www.instagram.com/yaza.foods?igsh=MXB6d3RjY29sNXZ2ZQ==" target="_blank" rel="noopener">
-          <img src="https://img1.wsimg.com/isteam/stock/NBGaeVW/:/rs=w:800,h:500,cg:true,m" alt="Yaza Labneh"/>
+          <img src="../images/yaza.jpeg" alt="Yaza Labneh"/>
           <div class="feat-card-overlay">
             <div class="fc-tag">Product Development · USA</div>
             <div class="fc-title">Yaza Labneh</div>
@@ -230,7 +234,7 @@
           </div>
         </a>
         <a class="feat-card reveal-scale" href="https://www.instagram.com/p/C6QzDLmvj0s/?igsh=c2Y4cXcwNHMydHVq" target="_blank" rel="noopener">
-          <img src="https://img1.wsimg.com/isteam/stock/3231/:/cr=t:0%25,l:0%25,w:66.67%25,h:100%25/rs=w:800,h:600,cg:true" alt="Rifai Coffee Capsules"/>
+          <img src="../images/rifai.jpeg" alt="Rifai Coffee Capsules"/>
           <div class="feat-card-overlay">
             <div class="fc-tag">Innovation · Lebanon</div>
             <div class="fc-title">Rifai Coffee Capsules</div>

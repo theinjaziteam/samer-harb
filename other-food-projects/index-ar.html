@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>مشاريع الغذاء — سامر حرب، مستشار غذائي استراتيجي</title>
+  <meta name="description" content="مشاريع غذائية أنجزها سامر حرب حول العالم — يازا لبنة الولايات المتحدة، مصنع قهوة الرفاعي، مخبز فينوس المجمد مصر، سعد الدين، تدقيق ISO، وأكثر."/>
+  <link rel="icon" href="https://img1.wsimg.com/isteam/ip/444b8d38-19da-4b89-bf4c-bb2ec2c3c6d1/logo/a260a6c7-3ef4-40ab-bab9-99ee7f8ea3c9.jpeg"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;500;600;700;800;900&family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+  <style>
+    :root{
+      --blue:#1c69d4;--blue-dark:#0653b6;--dark:#1a2129;--dark-2:#262e38;
+      --ink:#262626;--body:#3c3c3c;--muted:#6b6b6b;--soft:#9a9a9a;
+      --line:#e6e6e6;--white:#ffffff;--off:#f7f7f7;--card:#fafafa;
+      --font:'Noto Sans Arabic','Cairo',system-ui,sans-serif;--ease-out:cubic-bezier(0.16,1,0.3,1);
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:auto}
+    body{font-family:var(--font);color:var(--body);background:var(--white);overflow-x:hidden;direction:rtl;font-size:16px;-webkit-font-smoothing:antialiased}
+
+    /* ── NAV ── */
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;height:64px;display:flex;align-items:center;padding:0 48px;background:rgba(255,255,255,0.96);box-shadow:0 1px 0 var(--line);backdrop-filter:blur(12px)}
+    .nav-inner{width:100%;display:flex;align-items:center;justify-content:space-between}
+    .nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none}
+    .nav-logo img{width:36px;height:36px;border-radius:50%;object-fit:cover;border:2px solid var(--line)}
+    .nav-name{font-size:16px;font-weight:700;letter-spacing:.2px;color:var(--ink)}
+    .nav-links{display:flex;gap:28px;list-style:none;flex-direction:row-reverse}
+    .nav-links a{font-size:15px;font-weight:500;color:var(--muted);text-decoration:none;transition:color .2s;position:relative}
+    .nav-links a:hover,.nav-links a.active{color:var(--ink)}
+    .nav-cta{font-size:13px;font-weight:700;letter-spacing:.5px;color:var(--white);background:var(--blue);border:none;padding:11px 24px;text-decoration:none;display:inline-block;transition:background .2s,transform .2s}
+    .nav-cta:hover{background:var(--blue-dark);transform:translateY(-1px)}
+    .nav-lang{font-size:13px;font-weight:700;letter-spacing:.5px;color:var(--muted);text-decoration:none;transition:color .2s;margin-left:24px}
+    .nav-lang:hover{color:var(--blue)}
+    .nav-hamburger{display:none;flex-direction:column;gap:5px;padding:8px;background:none;border:none;cursor:pointer;z-index:200}
+    .nav-hamburger span{display:block;width:24px;height:2px;background:var(--ink);transition:transform .35s var(--ease-out),opacity .3s}
+    .nav-hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+    .nav-hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0)}
+    .nav-hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+    .mobile-menu{display:none;position:fixed;inset:0;z-index:150;background:rgba(26,33,41,0.98);backdrop-filter:blur(16px);flex-direction:column;align-items:center;justify-content:center;gap:32px;opacity:0;pointer-events:none;transition:opacity .35s var(--ease-out)}
+    .mobile-menu.open{opacity:1;pointer-events:all}
+    .mobile-menu a{font-size:30px;font-weight:700;color:rgba(255,255,255,0.85);text-decoration:none;transition:color .2s}
+    .mobile-menu a:hover{color:var(--blue)}
+    .mobile-menu .m-cta{font-size:14px;font-weight:700;color:var(--white);background:var(--blue);padding:14px 32px;margin-top:8px}
+
+    /* ── PAGE HERO ── */
+    .page-hero{background:var(--dark);padding:120px 48px 80px;position:relative;overflow:hidden;margin-top:64px}
+    .ph-stripe{position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#e22718 0%,#1c69d4 50%,#0066b1 100%)}
+    .hero-bg-img{position:absolute;inset:0;z-index:0}
+    .hero-bg-img img{width:100%;height:100%;object-fit:cover;filter:brightness(0.16) saturate(0.6)}
+    .page-hero-inner{position:relative;z-index:2;max-width:900px}
+    .ph-eyebrow{font-size:13px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--blue);margin-bottom:20px;display:flex;align-items:center;gap:10px}
+    .ph-eyebrow::before{content:'';display:block;width:24px;height:1.5px;background:var(--blue)}
+    .page-hero h1{font-size:clamp(32px,4.5vw,62px);font-weight:800;line-height:1.25;color:var(--white);margin-bottom:20px}
+    .page-hero h1 em{color:var(--blue);font-style:normal}
+    .page-hero p{font-size:18px;font-weight:400;line-height:1.8;color:rgba(255,255,255,0.7);max-width:640px}
+    .hero-stats-row{display:flex;gap:48px;margin-top:40px;padding-top:32px;border-top:1px solid rgba(255,255,255,0.1)}
+    .hs-val{font-size:38px;font-weight:700;color:var(--white);line-height:1}
+    .hs-val em{color:var(--blue);font-style:normal;font-size:24px}
+    .hs-lbl{font-size:13px;font-weight:500;letter-spacing:.3px;color:rgba(255,255,255,0.55);margin-top:6px}
+
+    /* ── PROJECTS LIST ── */
+    .projects-section{padding:80px 48px;background:var(--white)}
+    .projects-inner{max-width:1340px;margin:0 auto}
+    .section-eyebrow{font-size:13px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--blue);margin-bottom:12px}
+    .cat-group{margin-bottom:80px}
+    .cat-group:last-child{margin-bottom:0}
+    .cat-title{font-size:14px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--blue);margin-bottom:32px;padding-bottom:12px;border-bottom:2px solid var(--blue);display:flex;align-items:center;gap:12px;flex-direction:row-reverse;justify-content:flex-end}
+    .cat-badge{background:var(--blue);color:var(--white);font-size:12px;font-weight:700;padding:3px 10px;letter-spacing:.3px}
+    .projects-list{display:flex;flex-direction:column}
+    .project-item{
+      display:grid;grid-template-columns:160px 180px 1fr 72px;
+      align-items:center;gap:32px;padding:28px 0;border-top:1px solid var(--line);
+      text-decoration:none;color:inherit;transition:background .2s;
+    }
+    .project-item:last-child{border-bottom:1px solid var(--line)}
+    .project-item:hover{background:rgba(28,105,212,0.02)}
+    .pi-num{font-size:14px;font-weight:700;letter-spacing:.5px;color:var(--soft);text-align:left}
+    .pi-info{text-align:right}
+    .pi-name{font-size:21px;font-weight:700;color:var(--ink);transition:color .2s;margin-bottom:4px}
+    .project-item:hover .pi-name{color:var(--blue)}
+    .pi-desc{font-size:14px;font-weight:400;color:var(--muted);line-height:1.7}
+    .pi-country{font-size:13px;font-weight:700;letter-spacing:.3px;color:var(--muted);text-align:center}
+    .pi-service{font-size:13px;font-weight:400;color:var(--soft);text-align:right}
+    .pi-arrow{font-size:18px;color:var(--blue);text-align:left;opacity:0;transition:opacity .2s,transform .3s var(--ease-out);transform:translateX(8px)}
+    .project-item:hover .pi-arrow{opacity:1;transform:translateX(0)}
+
+    /* Featured projects grid */
+    .featured-section{padding:0 48px 80px;background:var(--white)}
+    .featured-inner{max-width:1340px;margin:0 auto}
+    .featured-grid{display:grid;grid-template-columns:1fr 1fr;gap:3px}
+    .feat-card{position:relative;overflow:hidden;height:380px;display:block;text-decoration:none}
+    .feat-card img{width:100%;height:100%;object-fit:cover;transition:transform .7s var(--ease-out)}
+    .feat-card:hover img{transform:scale(1.04)}
+    .feat-card-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(26,33,41,0.95) 0%,rgba(26,33,41,0) 55%);display:flex;flex-direction:column;justify-content:flex-end;padding:32px;text-align:right}
+    .fc-tag{font-size:12px;font-weight:700;letter-spacing:.3px;text-transform:uppercase;color:var(--blue);margin-bottom:8px}
+    .fc-title{font-size:24px;font-weight:700;color:var(--white);margin-bottom:8px}
+    .fc-desc{font-size:14px;font-weight:400;color:rgba(255,255,255,0.7);line-height:1.65}
+    .fc-link{font-size:12px;font-weight:700;letter-spacing:.3px;color:rgba(255,255,255,0);margin-top:12px;transition:color .3s}
+    .feat-card:hover .fc-link{color:rgba(255,255,255,0.6)}
+
+    /* ── CTA ── */
+    .cta-band{background:var(--blue);padding:80px 48px;text-align:center}
+    .cta-band h2{font-size:clamp(26px,3.6vw,46px);font-weight:700;color:var(--white);margin-bottom:20px;line-height:1.2}
+    .cta-band p{font-size:17px;font-weight:400;color:rgba(255,255,255,0.85);max-width:560px;margin:0 auto 36px;line-height:1.75}
+    .btn-white{display:inline-flex;align-items:center;gap:10px;font-size:13px;font-weight:700;letter-spacing:.5px;color:var(--blue);background:var(--white);padding:16px 36px;text-decoration:none;transition:background .2s,transform .2s}
+    .btn-white:hover{background:var(--off);transform:translateY(-2px)}
+
+    /* ── FOOTER ── */
+    footer{background:var(--off);padding:64px 48px 32px;border-top:1px solid var(--line)}
+    .footer-inner{max-width:1340px;margin:0 auto}
+    .footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;padding-bottom:48px;border-bottom:1px solid var(--line)}
+    .footer-brand-name{font-size:17px;font-weight:700;color:var(--ink);margin-bottom:6px}
+    .footer-brand-desc{font-size:15px;font-weight:400;color:var(--muted);line-height:1.75;max-width:300px;margin-bottom:24px}
+    .footer-social{display:flex;gap:12px;flex-direction:row-reverse}
+    .footer-social a{width:36px;height:36px;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:14px;color:var(--muted);text-decoration:none;transition:border-color .2s,color .2s,background .2s}
+    .footer-social a:hover{border-color:var(--blue);color:var(--blue);background:rgba(28,105,212,0.05)}
+    .footer-col-title{font-size:13px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--ink);margin-bottom:20px}
+    .footer-col ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+    .footer-col a{font-size:15px;font-weight:400;color:var(--muted);text-decoration:none;transition:color .2s}
+    .footer-col a:hover{color:var(--blue)}
+    .footer-bottom{display:flex;align-items:center;justify-content:space-between;padding-top:24px;flex-direction:row-reverse}
+    .footer-copy{font-size:13px;color:var(--soft)}
+    .footer-bottom-links{display:flex;gap:24px;flex-direction:row-reverse}
+    .footer-bottom-links a{font-size:13px;color:var(--soft);text-decoration:none;transition:color .2s}
+    .footer-bottom-links a:hover{color:var(--blue)}
+
+    .reveal{opacity:0;transform:translateY(28px)}
+    .reveal-scale{opacity:0;transform:scale(0.95)}
+
+    @media(max-width:900px){
+      nav{padding:0 24px}
+      .nav-links,.nav-cta,.nav-lang{display:none}
+      .nav-hamburger{display:flex}
+      .page-hero,.projects-section,.featured-section,.cta-band{padding-left:24px;padding-right:24px}
+      footer{padding-left:24px;padding-right:24px}
+      .project-item{grid-template-columns:1fr 48px}
+      .pi-country,.pi-service{display:none}
+      .hero-stats-row{gap:28px}
+      .featured-grid{grid-template-columns:1fr}
+      .footer-top{grid-template-columns:1fr 1fr}
+    }
+    @media(max-width:600px){
+      .footer-top{grid-template-columns:1fr}
+      .footer-bottom{flex-direction:column;gap:12px;text-align:center}
+      .hero-stats-row{flex-wrap:wrap;gap:24px}
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ─── NAV ─── -->
+  <nav id="nav">
+    <div class="nav-inner">
+      <a class="nav-logo" href="../index-ar.html">
+        <img src="https://img1.wsimg.com/isteam/ip/444b8d38-19da-4b89-bf4c-bb2ec2c3c6d1/logo/a260a6c7-3ef4-40ab-bab9-99ee7f8ea3c9.jpeg" alt="سامر حرب"/>
+        <span class="nav-name">سامر حرب</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="../about-us/index-ar.html">عن سامر</a></li>
+        <li><a href="../index-ar.html#services">الخدمات</a></li>
+        <li><a href="index-ar.html" class="active">المشاريع</a></li>
+        <li><a href="../faq/index-ar.html">الأسئلة الشائعة</a></li>
+        <li><a href="../reviews/index-ar.html">التقييمات</a></li>
+      </ul>
+      <a href="index.html" class="nav-lang">EN</a>
+      <a href="../contact-us/index-ar.html" class="nav-cta">احجز استشارة</a>
+      <button class="nav-hamburger" id="hamburger" aria-label="فتح القائمة">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ─── MOBILE MENU ─── -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="../about-us/index-ar.html">عن سامر</a>
+    <a href="../index-ar.html#services">الخدمات</a>
+    <a href="index-ar.html">المشاريع</a>
+    <a href="../faq/index-ar.html">الأسئلة الشائعة</a>
+    <a href="../reviews/index-ar.html">التقييمات</a>
+    <a href="index.html">English</a>
+    <a href="../contact-us/index-ar.html" class="m-cta">احجز استشارة</a>
+  </div>
+
+  <!-- ─── PAGE HERO ─── -->
+  <div class="page-hero">
+    <div class="hero-bg-img">
+      <img src="https://img1.wsimg.com/isteam/ip/444b8d38-19da-4b89-bf4c-bb2ec2c3c6d1/food-food-processing-industry-koks-robotics-c.WebP" alt="معالجة الأغذية"/>
+    </div>
+    <div class="ph-stripe"></div>
+    <div class="page-hero-inner">
+      <div class="ph-eyebrow">المحفظة</div>
+      <h1>أكثر من 25 عاماً من<br>المشاريع <em>المُنجزة</em></h1>
+      <p>سجل من العمل في صناعة الغذاء عبر لبنان ومصر وتركيا والسعودية والكويت والبحرين والعراق والولايات المتحدة وكندا — يشمل تطوير المنتجات، شهادات ISO، سلسلة الإمداد، وأكثر.</p>
+      <div class="hero-stats-row">
+        <div><div class="hs-val">25<em>+</em></div><div class="hs-lbl">سنوات نشطة</div></div>
+        <div><div class="hs-val">9</div><div class="hs-lbl">دول</div></div>
+        <div><div class="hs-val">8</div><div class="hs-lbl">مجالات خدمة</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── FEATURED PROJECTS ─── -->
+  <div class="featured-section" style="padding-top:80px">
+    <div class="featured-inner">
+      <div class="section-eyebrow">مميز</div>
+      <h2 style="font-size:clamp(24px,3vw,38px);font-weight:700;color:var(--ink);margin-bottom:40px;line-height:1.2">مشاريع <span style="color:var(--blue)">رائدة</span></h2>
+      <div class="featured-grid">
+        <a class="feat-card reveal-scale" href="https://www.instagram.com/yaza.foods?igsh=MXB6d3RjY29sNXZ2ZQ==" target="_blank" rel="noopener">
+          <img src="../images/yaza.jpeg" alt="يازا لبنة"/>
+          <div class="feat-card-overlay">
+            <div class="fc-tag">تطوير منتج · الولايات المتحدة</div>
+            <div class="fc-title">يازا لبنة</div>
+            <div class="fc-desc">علامة تجارية لبنانية مميزة لمنتجات الألبان، صُمِّمت وسُمِّيت للسوق الأمريكية. تطوير منتج كامل، تحليل غذائي، وتسمية متوافقة مع FDA.</div>
+            <div class="fc-link">عرض على إنستغرام ←</div>
+          </div>
+        </a>
+        <a class="feat-card reveal-scale" href="https://www.instagram.com/p/C6QzDLmvj0s/?igsh=c2Y4cXcwNHMydHVq" target="_blank" rel="noopener">
+          <img src="../images/rifai.jpeg" alt="كبسولات قهوة الرفاعي"/>
+          <div class="feat-card-overlay">
+            <div class="fc-tag">ابتكار · لبنان</div>
+            <div class="fc-title">كبسولات قهوة الرفاعي</div>
+            <div class="fc-desc">تصميم شامل لخط كبسولات قهوة متوافق مع Nespresso — من معالجة حبوب القهوة الخام وتحديد ملف التحميص إلى هندسة الكبسولات والتعبئة واختبار مدة الصلاحية.</div>
+            <div class="fc-link">عرض على إنستغرام ←</div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── ALL PROJECTS ─── -->
+  <section class="projects-section">
+    <div class="projects-inner">
+
+      <!-- PRODUCT DEVELOPMENT -->
+      <div class="cat-group reveal">
+        <div class="cat-title"><span class="cat-badge">4 مشاريع</span> تطوير المنتجات والإطلاق</div>
+        <div class="projects-list">
+
+          <a class="project-item" href="https://www.instagram.com/yaza.foods?igsh=MXB6d3RjY29sNXZ2ZQ==" target="_blank" rel="noopener">
+            <span class="pi-arrow">←</span>
+            <span class="pi-info">
+              <div class="pi-name">يازا لبنة — إطلاق في الولايات المتحدة</div>
+              <div class="pi-desc">تطوير منتج كامل لعلامة لبنة لبنانية مميزة تدخل السوق الأمريكي. تحسين الصياغة، تسمية غذائية متوافقة مع FDA، اختبار مدة الصلاحية، ومواصفات التعبئة للتجزئة الأمريكية.</div>
+            </span>
+            <span class="pi-service">تطوير المنتج · التسمية</span>
+            <span class="pi-country">الولايات المتحدة</span>
+          </a>
+
+          <a class="project-item" href="https://www.instagram.com/p/C6QzDLmvj0s/?igsh=c2Y4cXcwNHMydHVq" target="_blank" rel="noopener">
+            <span class="pi-arrow">←</span>
+            <span class="pi-info">
+              <div class="pi-name">مصنع قهوة الرفاعي — خط الكبسولات</div>
+              <div class="pi-desc">تصميم شامل لخط إنتاج كبسولات قهوة متوافقة مع Nespresso لشركة قهوة الرفاعي في لبنان. شمل النطاق توريد المواد الخام، تحديد ملف التحميص، هندسة الكبسولات، اختبار التوافق، تصميم التعبئة، واختبار مدة الصلاحية.</div>
+            </span>
+            <span class="pi-service">ابتكار المنتج</span>
+            <span class="pi-country">لبنان</span>
+          </a>
+
+          <div class="project-item" style="cursor:default">
+            <span class="pi-arrow"></span>
+            <span class="pi-info">
+              <div class="pi-name">مخبز فينوس المجمد — مصر</div>
+              <div class="pi-desc">تطوير خط منتجات لعملية مخبز مجمد في مصر. شمل صياغة المنتج، اختيار تقنية التجميد، تعبئة السلسلة الباردة، والتسمية الغذائية للسوق المصري. دعم الامتثال لمعايير هيئة سلامة الغذاء المصرية (EFSA).</div>
+            </span>
+            <span class="pi-service">تطوير المنتج · الامتثال</span>
+            <span class="pi-country">مصر</span>
+          </div>
+
+          <div class="project-item" style="cursor:default">
+            <span class="pi-arrow"></span>
+            <span class="pi-info">
+              <div class="pi-name">دار الأيتام الإسلامية — بيروت</div>
+              <div class="pi-desc">تقييم غذائي وتحسين خدمة الطعام لإحدى أكبر المؤسسات الخيرية في بيروت. قدّم تحليلاً غذائياً، إرشاداً لتخطيط القوائم، وتدريباً على سلامة الغذاء لعمليات تقديم الطعام المؤسسي التي تخدم مئات المستفيدين.</div>
+            </span>
+            <span class="pi-service">التغذية · خدمة الطعام</span>
+            <span class="pi-country">لبنان</span>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ISO AUDITS & COMPLIANCE -->
+      <div class="cat-group reveal">
+        <div class="cat-title"><span class="cat-badge">4 مشاريع</span> تدقيق وامتثال ISO</div>
+        <div class="projects-list">
+
+          <a class="project-item" href="https://youtu.be/2JLbpQFriFM" target="_blank" rel="noopener">
+            <span class="pi-arrow">←</span>
+            <span class="pi-info">
+              <div class="pi-name">الرفاعي — شهادة ISO 22000</div>
+              <div class="pi-desc">مدقق رئيسي لشهادة ISO 22000:2018 في منشآت الرفاعي الغذائية في لبنان والخليج. أجرى تحليل فجوات كامل، تطوير نظام HACCP، تدريب الموظفين، ودعم التدقيق الداخلي، مما أدى إلى نجاح الحصول على الشهادة من أول محاولة.</div>
+            </span>
+            <span class="pi-service">ISO 22000 · HACCP</span>
+            <span class="pi-country">لبنان · الخليج</span>
+          </a>
+
+          <div class="project-item" style="cursor:default">
+            <span class="pi-arrow"></span>
+            <span class="pi-info">
+              <div class="pi-name">حلويات سعد الدين — السعودية</div>
+              <div class="pi-desc">استشارة نظام إدارة سلامة الغذاء لمصانع حلويات سعد الدين في السعودية. شمل النطاق تدقيق سلامة الغذاء، مراجعة خطة HACCP، تقييم خط الإنتاج، إدارة مسببات الحساسية، وتحديث وثائق نظام الجودة.</div>
+            </span>
+            <span class="pi-service">سلامة الغذاء · التدقيق</span>
+            <span class="pi-country">السعودية</span>
+          </div>
+
+          <div class="project-item" style="cursor:default">
+            <span class="pi-arrow"></span>
+            <span class="pi-info">
+              <div class="pi-name">مركز دايت — منطقة الخليج</div>
+              <div class="pi-desc">مراجعة شاملة لسلامة الغذاء والمعايير الغذائية لعمليات إنتاج وتوصيل الطعام لمركز دايت في منطقة الخليج. شملت تطبيق HACCP، تدقيق السلسلة الباردة، التحقق من الدقة الغذائية، وتوثيق الامتثال التنظيمي.</div>
+            </span>
+            <span class="pi-service">الامتثال · التغذية</span>
+            <span class="pi-country">الخليج</span>
+          </div>
+
+          <div class="project-item" style="cursor:default">
+            <span class="pi-arrow"></span>
+            <span class="pi-info">
+              <div class="pi-name">تدقيقات رئيسية متعددة المنشآت — حول العالم</div>
+              <div class="pi-desc">بصفتي مدققاً رئيسياً معتمداً لمعيار ISO 22000:2018 من IRCA-UK، أجريت تدقيقات رئيسية متعددة لمُصنّعي أغذية في لبنان والسعودية ومصر. شملت المنشآت مصانع ألبان، مخابز، مصانع حلويات، ومراكز توزيع غذائي.</div>
+            </span>
+            <span class="pi-service">تدقيقات رئيسية ISO 22000</span>
+            <span class="pi-country">حول العالم</span>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- NUTRITIONAL LABELING -->
+      <div class="cat-group reveal">
+        <div class="cat-title"><span class="cat-badge">3 مشاريع</span> الحقائق الغذائية والتسمية</div>
+        <div class="projects-list">
+
+          <div class="project-item" style="cursor:default">
+            <span class="pi-arrow"></span>
+            <span class="pi-info">
+              <div class="pi-name">دانوب / بن داود — تسمية السعودية</div>
+              <div class="pi-desc">تقديم حسابات الحقائق الغذائية وتسمية متوافقة تنظيمياً لمنتجات العلامات الخاصة لدانوب وبن داود للسوق السعودي. شمل متطلبات الهيئة العامة للغذاء والدواء السعودية (SFDA) لفئات منتجات متعددة.</div>
+            </span>
+            <span class="pi-service">التسمية · SFDA</span>
+            <span class="pi-country">السعودية</span>
+          </div>
+
+          <div class="project-item" style="cursor:default">
+            <span class="pi-arrow"></span>
+            <span class="pi-info">
+              <div class="pi-name">تسمية المنتجات الدولية — أمريكا الشمالية</div>
+              <div class="pi-desc">تسمية غذائية متوافقة مع FDA (الولايات المتحدة) و Health Canada للعلامات الغذائية اللبنانية المُصدَّرة لأمريكا الشمالية. شمل ترجمة الوصفات التقليدية إلى صيغ موحدة، تحديد حجم الحصة، وتحضير لوحة الحقائق الغذائية الكاملة.</div>
+            </span>
+            <span class="pi-service">FDA · Health Canada</span>
+            <span class="pi-country">الولايات المتحدة · كندا</span>
+          </div>
+
+          <div class="project-item" style="cursor:default">
+            <span class="pi-arrow"></span>
+            <span class="pi-info">
+              <div class="pi-name">برنامج تسمية متعدد الأسواق — لبنان</div>
+              <div class="pi-desc">برنامج تسمية غذائية وتوثيق تنظيمي لمُصنّعي أغذية لبنانيين يستعدّون لدخول أسواق تصدير متعددة في الوقت نفسه (دول الخليج، الاتحاد الأوروبي، أمريكا الشمالية). طوّر إطار تسمية قابل لإعادة الاستخدام يتكيّف مع كل بيئة تنظيمية.</div>
+            </span>
+            <span class="pi-service">تسمية متعددة الأسواق</span>
+            <span class="pi-country">لبنان (تصدير)</span>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- SUPPLY CHAIN & ERP -->
+      <div class="cat-group reveal">
+        <div class="cat-title"><span class="cat-badge">3 مشاريع</span> سلسلة الإمداد والتحول الرقمي</div>
+        <div class="projects-list">
+
+          <div class="project-item" style="cursor:default">
+            <span class="pi-arrow"></span>
+            <span class="pi-info">
+              <div class="pi-name">تحسين سلسلة الإمداد الإقليمية — مصر</div>
+              <div class="pi-desc">تقييم وإعادة تصميم شاملة لسلسلة الإمداد لشركة توزيع غذائي تعمل في مصر. حدّد نقاط ضعف في الشراء والتخزين والتوصيل للميل الأخير. طبّق تحسينات في العمليات خفّضت تكاليف اللوجستيات وحسّنت سلامة السلسلة الباردة.</div>
+            </span>
+            <span class="pi-service">سلسلة الإمداد</span>
+            <span class="pi-country">مصر</span>
+          </div>
+
+          <div class="project-item" style="cursor:default">
+            <span class="pi-arrow"></span>
+            <span class="pi-info">
+              <div class="pi-name">استشارة تطبيق ERP — البحرين والكويت</div>
+              <div class="pi-desc">تخطيط تقني واستشارة لاختيار نظام ERP لشركات غذائية في البحرين والكويت تنتقل من العمليات اليدوية إلى الرقمية. شمل جمع المتطلبات، تقييم الموردين، تخطيط التنفيذ، وإدارة التغيير لوحدات الإنتاج والمخزون ومراقبة الجودة.</div>
+            </span>
+            <span class="pi-service">ERP · رقمي</span>
+            <span class="pi-country">البحرين · الكويت</span>
+          </div>
+
+          <div class="project-item" style="cursor:default">
+            <span class="pi-arrow"></span>
+            <span class="pi-info">
+              <div class="pi-name">إعادة هيكلة إدارة منشأة غذائية</div>
+              <div class="pi-desc">إعادة تصميم تنظيمي لمُصنّع أغذية متوسط الحجم في لبنان. أعاد هيكلة التسلسل الإداري، حدّد مؤشرات أداء الأقسام، حسّن جدولة الورديات، ودرّب فريق القيادة على أطر التميز التشغيلي المُكيَّفة لصناعة الغذاء.</div>
+            </span>
+            <span class="pi-service">الإدارة · الهيكلة</span>
+            <span class="pi-country">لبنان</span>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ─── CTA ─── -->
+  <div class="cta-band">
+    <h2>لديك مشروع في ذهنك؟</h2>
+    <p>أحضر تحدي عملك الغذائي ولنبنِ الحل معاً — من الفكرة إلى الامتثال.</p>
+    <a href="../contact-us/index-ar.html" class="btn-white">احجز استشارة ↗</a>
+  </div>
+
+  <!-- ─── FOOTER ─── -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div>
+          <div class="footer-brand-name">سامر حرب</div>
+          <div class="footer-brand-desc">مستشار استراتيجي في صناعة الغذاء وعالم أغذية معتمد. أول لبناني حاصل على شهادة CFS. مدقق رئيسي ISO 22000:2018 (IRCA-UK). أكثر من 25 عاماً حول العالم.</div>
+          <div class="footer-social">
+            <a href="https://www.facebook.com/Samerfoodconsultant/" target="_blank" title="Facebook"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+            <a href="https://www.instagram.com/internationalfoodexperts" target="_blank" title="Instagram"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+            <a href="https://www.linkedin.com/in/samerharb/" target="_blank" title="LinkedIn"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+            <a href="https://www.x.com/Samersamiharb" target="_blank" title="X"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.737-8.835L1.254 2.25H8.08l4.253 5.622 5.91-5.622Zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+            <a href="https://www.youtube.com/Hsamer1234" target="_blank" title="YouTube"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="white"/></svg></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-title">الخدمات</div>
+          <ul>
+            <li><a href="../index-ar.html#services">مشاريع الغذاء</a></li>
+            <li><a href="../index-ar.html#services">مدة الصلاحية والجودة</a></li>
+            <li><a href="../index-ar.html#services">التسمية الغذائية</a></li>
+            <li><a href="../index-ar.html#services">سلسلة الإمداد</a></li>
+            <li><a href="../index-ar.html#services">تطوير المنتجات</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-title">الصفحات</div>
+          <ul>
+            <li><a href="../about-us/index-ar.html">عن سامر</a></li>
+            <li><a href="index-ar.html">المشاريع</a></li>
+            <li><a href="../reviews/index-ar.html">التقييمات</a></li>
+            <li><a href="../faq/index-ar.html">الأسئلة الشائعة</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-title">التواصل</div>
+          <ul>
+            <li><a href="../contact-us/index-ar.html">احجز استشارة</a></li>
+            <li><a href="mailto:samer@internationalfoodexperts.com">راسلني مباشرة</a></li>
+            <li><a href="../index-ar.html#recognition">الإعلام والصحافة</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span class="footer-copy">© 2026 سامر حرب. جميع الحقوق محفوظة.</span>
+        <div class="footer-bottom-links">
+          <a href="../faq/index-ar.html">الأسئلة الشائعة</a>
+          <a href="../contact-us/index-ar.html">التواصل</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const lenis = new Lenis({ lerp: 0.08, smoothWheel: true });
+    function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+    requestAnimationFrame(raf);
+
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    hamburger.addEventListener('click', () => {
+      const open = mobileMenu.classList.toggle('open');
+      hamburger.classList.toggle('open', open);
+      document.body.style.overflow = open ? 'hidden' : '';
+    });
+    mobileMenu.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        mobileMenu.classList.remove('open');
+        hamburger.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    });
+
+    gsap.registerPlugin(ScrollTrigger);
+    gsap.utils.toArray('.reveal').forEach(el => { gsap.to(el, { opacity:1, y:0, duration:0.9, ease:'power3.out', scrollTrigger:{ trigger:el, start:'top 88%', once:true } }); });
+    gsap.utils.toArray('.reveal-scale').forEach((el,i) => { gsap.to(el, { opacity:1, scale:1, duration:1, ease:'power3.out', scrollTrigger:{ trigger:el, start:'top 88%', once:true }, delay:i*0.1 }); });
+    gsap.from('.page-hero-inner', { opacity:0, y:30, duration:1, ease:'power3.out', delay:0.2 });
+  </script>
+</body>
+</html>
